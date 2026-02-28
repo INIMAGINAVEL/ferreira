@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferreira Custom - Recuperação e Pintura Automotiva</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="logo.png" type="image/png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        brand: ['Orbitron', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#2F499F', /* Azul do Logo */
+                        primaryHover: '#3b5bbd', /* Azul ligeiramente mais claro para hover */
+                        brandGreen: '#25D366',
+                        darkBg: '#0d0d0d',
+                        darkCard: '#141414',
+                        textGray: '#a1a1aa'
+                    },
+                    fontSize: {
+                        'xs': '0.85rem',
+                        'sm': '1.05rem',
+                        'base': '1.15rem',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; 
+        }
+        body {
+            background-color: #0d0d0d;
+            color: #ffffff;
+        }
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px #ffffff;
+        }
+        .font-brand { font-family: 'Orbitron', sans-serif; }
+
+        /* Configuração do Carrossel de Imagens */
+        #hero-bg-container {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            background-color: #0d0d0d;
+        }
+        .carousel-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            transform: scale(1.1);
+            transition: opacity 2s ease-in-out, transform 10s linear;
+        }
+        .carousel-slide.active {
+            opacity: 0.5;
+            transform: scale(1);
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(13, 13, 13, 1) 30%, rgba(13, 13, 13, 0.4));
+            z-index: 1;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0d0d0d; }
+        ::-webkit-scrollbar-thumb { background: #333; }
+        ::-webkit-scrollbar-thumb:hover { background: #2F499F; }
+
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Glow Effect */
+        .glow-primary {
+            filter: drop-shadow(0 0 10px rgba(47, 73, 159, 0.6));
+        }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden">
+
+    <!-- Cabeçalho (Header) FIXO -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/5 transition-all">
+        <div class="px-6 py-3 flex justify-between items-center relative z-20 container mx-auto">
+            <!-- Logo Grande -->
+            <a href="#home" class="flex items-center gap-2 h-14">
+                <img src="logo grande.jpg" alt="Ferreira Custom Logo" class="h-12 md:h-16 object-contain">
+            </a>
+
+            <!-- Navegação (Desktop) -->
+            <nav class="hidden lg:flex gap-8 text-sm font-semibold text-white uppercase tracking-widest">
+                <a href="#home" id="nav-sobre" class="hover:text-primary transition hidden">Início</a>
+                <a href="#servicos" class="hover:text-primary transition">Serviços</a>
+                <a href="#galeria" class="hover:text-primary transition">Trabalhos</a>
+                <a href="#avaliacoes" class="hover:text-primary transition">Avaliações</a>
+                <a href="#localizacao" class="hover:text-primary transition">Onde Estamos</a>
+            </nav>
+
+            <!-- Contato (Desktop) -->
+            <div class="hidden lg:flex items-center gap-6">
+                <div class="flex flex-col text-right border-r border-zinc-800 pr-6">
+                    <span class="text-[10px] text-gray-400 uppercase tracking-widest">Atendimento</span>
+                    <a href="https://wa.me/5519990155383" target="_blank" class="text-lg font-bold text-white hover:text-primary transition flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-brandGreen"></i> (19) 99015-5383
+                    </a>
+                </div>
+                <a href="#localizacao" class="bg-primary text-white px-6 py-2.5 font-bold text-sm hover:bg-primaryHover transition rounded uppercase tracking-tighter shadow-lg shadow-primary/20">Solicitar Orçamento</a>
+            </div>
+            
+            <!-- Mobile Menu Btn -->
+            <div class="lg:hidden flex items-center gap-4">
+                <a href="https://wa.me/5519990155383" target="_blank" class="text-brandGreen text-2xl"><i class="fa-brands fa-whatsapp"></i></a>
+                <button id="mobile-menu-btn" class="text-white text-3xl"><i class="fa-solid fa-bars-staggered"></i></button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile -->
+        <nav id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-black/95 border-b border-zinc-800 flex-col py-6 px-6 z-10 shadow-2xl transition-all uppercase text-center tracking-widest">
+            <a href="#home" class="mobile-link text-white font-semibold py-4 border-b border-zinc-900">Início</a>
+            <a href="#servicos" class="mobile-link text-white font-semibold py-4 border-b border-zinc-900">Serviços</a>
+            <a href="#galeria" class="mobile-link text-white font-semibold py-4 border-b border-zinc-900">Trabalhos</a>
+            <a href="#avaliacoes" class="mobile-link text-white font-semibold py-4 border-b border-zinc-900">Avaliações</a>
+            <a href="#localizacao" class="mobile-link text-primary font-bold py-4">Orçamento</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center relative pt-20 overflow-hidden">
+        <div id="hero-bg-container">
+            <!-- Imagens inseridas via JS -->
+        </div>
+        <div class="hero-overlay"></div>
+
+        <div class="container mx-auto px-6 z-10 relative">
+            <div class="max-w-3xl">
+                <div class="inline-block bg-primary/20 border border-primary/50 text-blue-200 px-4 py-1 text-xs font-bold rounded-full mb-6 uppercase tracking-[0.2em]">
+                    <i class="fa-solid fa-car mr-2"></i> Qualidade e Agilidade
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight leading-tight">
+                    Recuperação e <br><span class="text-primary glow-primary">Pintura Automotiva</span>
+                </h1>
+                
+                <p class="text-gray-300 mb-10 text-base md:text-lg leading-relaxed max-w-2xl text-justify">
+                    A Ferreira Custom trabalha com recuperação e pintura automotiva, oferecendo retoques e serviços rápidos de qualidade. Além disso, prestamos um atendimento personalizado e individual, sempre buscando entender e atender às necessidades de cada cliente da melhor maneira possível. O foco é entregar um serviço ágil, preciso e com um acabamento que supera expectativas. Nosso compromisso é garantir uma experiência de excelência, unindo agilidade, qualidade e um acabamento premium.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-5">
+                    <a href="https://wa.me/5519990155383" target="_blank" class="bg-primary text-white text-center px-10 py-4 font-bold rounded hover:bg-primaryHover transition flex items-center justify-center gap-3 shadow-lg shadow-primary/30">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> ENTRAR EM CONTATO
+                    </a>
+                    <a href="#servicos" class="border border-zinc-700 text-white text-center px-10 py-4 font-bold rounded hover:bg-zinc-800 transition uppercase text-sm tracking-widest">
+                        Ver Serviços
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Indicador de Scroll -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce text-zinc-500">
+            <i class="fa-solid fa-chevron-down text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="servicos" class="py-24 bg-darkBg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-brand text-3xl md:text-5xl mb-4 text-white">Nossos <span class="text-primary">Serviços</span></h2>
+                <div class="h-1 w-20 bg-primary mx-auto"></div>
+                <p class="text-textGray mt-4 max-w-2xl mx-auto">Soluções rápidas e precisas para a estética e estrutura do seu veículo.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Serviço 1: Pintura e Retoques -->
+                <div class="group bg-darkCard border border-zinc-800 p-8 rounded-2xl hover:border-primary transition duration-500 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -z-0"></div>
+                    <div class="w-16 h-16 bg-zinc-900 rounded-xl flex items-center justify-center text-primary text-3xl mb-6 group-hover:scale-110 transition relative z-10 border border-zinc-800 group-hover:border-primary/50">
+                        <i class="fa-solid fa-spray-can"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white relative z-10">Pintura e Retoques</h3>
+                    <p class="text-sm text-textGray leading-relaxed relative z-10">
+                        Pintura automotiva completa e retoques rápidos para remover riscos e arranhões, garantindo o nivelamento e a cor exata do seu veículo.
+                    </p>
+                </div>
+
+                <!-- Serviço 2: Recuperação de Para-choque -->
+                <div class="group bg-darkCard border border-zinc-800 p-8 rounded-2xl hover:border-primary transition duration-500 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -z-0"></div>
+                    <div class="w-16 h-16 bg-zinc-900 rounded-xl flex items-center justify-center text-primary text-3xl mb-6 group-hover:scale-110 transition relative z-10 border border-zinc-800 group-hover:border-primary/50">
+                        <i class="fa-solid fa-car-burst"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white relative z-10">Recuperação de Para-choque</h3>
+                    <p class="text-sm text-textGray leading-relaxed relative z-10">
+                        Restauramos trincas, quebras e deformações em para-choques plásticos. Solução econômica e eficiente sem a necessidade de substituição da peça.
+                    </p>
+                </div>
+
+                <!-- Serviço 3: Funilaria -->
+                <div class="group bg-darkCard border border-zinc-800 p-8 rounded-2xl hover:border-primary transition duration-500 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -z-0"></div>
+                    <div class="w-16 h-16 bg-zinc-900 rounded-xl flex items-center justify-center text-primary text-3xl mb-6 group-hover:scale-110 transition relative z-10 border border-zinc-800 group-hover:border-primary/50">
+                        <i class="fa-solid fa-hammer"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white relative z-10">Funilaria</h3>
+                    <p class="text-sm text-textGray leading-relaxed relative z-10">
+                        Reparos de lataria contra amassados e pequenas colisões. Alinhamento preciso para manter a estrutura original do seu carro intacta.
+                    </p>
+                </div>
+
+                <!-- Serviço 4: Polimento de Faróis -->
+                <div class="group bg-darkCard border border-zinc-800 p-8 rounded-2xl hover:border-primary transition duration-500 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -z-0"></div>
+                    <div class="w-16 h-16 bg-zinc-900 rounded-xl flex items-center justify-center text-primary text-3xl mb-6 group-hover:scale-110 transition relative z-10 border border-zinc-800 group-hover:border-primary/50">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white relative z-10">Polimento de Faróis</h3>
+                    <p class="text-sm text-textGray leading-relaxed relative z-10">
+                        Remoção do aspecto amarelado e fosco das lentes. Melhora a estética do carro e aumenta a visibilidade e segurança durante a condução noturna.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria -->
+    <section id="galeria" class="py-24 bg-[#0a0a0a] border-y border-zinc-900">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div>
+                    <h2 class="font-brand text-3xl md:text-4xl mb-2">Trabalhos <span class="text-primary">Recentes</span></h2>
+                    <p class="text-zinc-500">Confira a qualidade do nosso acabamento.</p>
+                </div>
+                <a href="https://www.instagram.com/ferreiracustom.oficial/" target="_blank" class="text-white hover:text-primary font-bold tracking-widest text-sm border-b border-primary/50 hover:border-primary pb-1 transition flex items-center gap-2">
+                    <i class="fa-brands fa-instagram text-xl"></i> @FERREIRACUSTOM.OFICIAL
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Imagens Placeholder - Para substituir, insira o caminho correto em src="..." -->
+                <div class="overflow-hidden rounded-lg aspect-square bg-zinc-900">
+                    <img src="https://via.placeholder.com/600x600/111/2F499F?text=Foto+1" alt="Serviço Ferreira Custom 1" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700">
+                </div>
+                <div class="overflow-hidden rounded-lg aspect-square bg-zinc-900">
+                    <img src="https://via.placeholder.com/600x600/111/2F499F?text=Foto+2" alt="Serviço Ferreira Custom 2" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700">
+                </div>
+                <div class="overflow-hidden rounded-lg aspect-square bg-zinc-900">
+                    <img src="https://via.placeholder.com/600x600/111/2F499F?text=Foto+3" alt="Serviço Ferreira Custom 3" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700">
+                </div>
+                <div class="overflow-hidden rounded-lg aspect-square bg-zinc-900">
+                    <img src="https://via.placeholder.com/600x600/111/2F499F?text=Foto+4" alt="Serviço Ferreira Custom 4" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Avaliações Google (Carrossel) -->
+    <section id="avaliacoes" class="py-24 bg-darkBg border-b border-zinc-900 overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col items-center mb-12">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full mb-4 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                    <i class="fa-brands fa-google text-3xl text-[#4285F4]"></i>
+                </div>
+                <h3 class="font-brand text-2xl md:text-3xl mb-2 tracking-widest text-white">AVALIAÇÕES NO <span class="text-primary">GOOGLE</span></h3>
+                <p class="text-zinc-400 text-center max-w-xl">O que nossos clientes dizem sobre o nosso trabalho.</p>
+            </div>
+
+            <div class="relative max-w-6xl mx-auto">
+                <button id="prev-review" class="absolute -left-2 md:-left-6 top-1/2 -translate-y-1/2 z-10 bg-zinc-800 text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center hover:bg-primary transition shadow-lg border border-zinc-700"><i class="fa-solid fa-chevron-left"></i></button>
+                <button id="next-review" class="absolute -right-2 md:-right-6 top-1/2 -translate-y-1/2 z-10 bg-zinc-800 text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center hover:bg-primary transition shadow-lg border border-zinc-700"><i class="fa-solid fa-chevron-right"></i></button>
+
+                <div id="reviews-track" class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar py-4 px-2">
+                    
+                    <!-- Avaliação 1 -->
+                    <div class="min-w-[300px] md:min-w-[350px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-bold text-white text-sm">RM</div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm">Rafael Mendes</h4>
+                                        <div class="text-xs text-zinc-500 mt-1">Há 1 mês</div>
+                                    </div>
+                                </div>
+                                <i class="fa-brands fa-google text-blue-500 opacity-50 text-lg"></i>
+                            </div>
+                            <div class="flex text-yellow-400 mb-3 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-zinc-300 text-sm leading-relaxed mb-4">"Ótimo atendimento e serviço de primeira. Deixei meu carro para arrumar o para-choque e polir os faróis, ficou parecendo novo. Recomendo muito!"</p>
+                        </div>
+                    </div>
+
+                    <!-- Avaliação 2 -->
+                    <div class="min-w-[300px] md:min-w-[350px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center font-bold text-white text-sm">CS</div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm">Carlos Santos</h4>
+                                        <div class="text-xs text-zinc-500 mt-1">Há 2 meses</div>
+                                    </div>
+                                </div>
+                                <i class="fa-brands fa-google text-blue-500 opacity-50 text-lg"></i>
+                            </div>
+                            <div class="flex text-yellow-400 mb-3 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-zinc-300 text-sm leading-relaxed mb-4">"Trabalho muito rápido e com preço justo. A pintura do capô ficou com a cor exata, não dá para notar diferença nenhuma."</p>
+                        </div>
+                    </div>
+
+                    <!-- Avaliação 3 -->
+                    <div class="min-w-[300px] md:min-w-[350px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center font-bold text-white text-sm">LM</div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm">Luciana Martins</h4>
+                                        <div class="text-xs text-zinc-500 mt-1">Há 3 meses</div>
+                                    </div>
+                                </div>
+                                <i class="fa-brands fa-google text-blue-500 opacity-50 text-lg"></i>
+                            </div>
+                            <div class="flex text-yellow-400 mb-3 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-zinc-300 text-sm leading-relaxed mb-4">"Atendimento excepcional do início ao fim. Profissionais atenciosos e um acabamento impecável na lataria do meu carro."</p>
+                        </div>
+                    </div>
+
+                    <!-- Avaliação 4 -->
+                    <div class="min-w-[300px] md:min-w-[350px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center font-bold text-white text-sm">JP</div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm">João Pereira</h4>
+                                        <div class="text-xs text-zinc-500 mt-1">Há 4 meses</div>
+                                    </div>
+                                </div>
+                                <i class="fa-brands fa-google text-blue-500 opacity-50 text-lg"></i>
+                            </div>
+                            <div class="flex text-yellow-400 mb-3 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-zinc-300 text-sm leading-relaxed mb-4">"Levei para um retoque na porta depois de uma batida no estacionamento. O serviço foi ágil e a qualidade me surpreendeu."</p>
+                        </div>
+                    </div>
+
+                    <!-- Avaliação 5 -->
+                    <div class="min-w-[300px] md:min-w-[350px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center font-bold text-white text-sm">AP</div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm">Ana Paula</h4>
+                                        <div class="text-xs text-zinc-500 mt-1">Há 5 meses</div>
+                                    </div>
+                                </div>
+                                <i class="fa-brands fa-google text-blue-500 opacity-50 text-lg"></i>
+                            </div>
+                            <div class="flex text-yellow-400 mb-3 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-zinc-300 text-sm leading-relaxed mb-4">"Os faróis do meu carro estavam muito amarelados. O polimento que fizeram devolveu o brilho original. Excelente oficina em Piracicaba!"</p>
+                        </div>
+                    </div>
+
+                    <!-- Avaliação 6 -->
+                    <div class="min-w-[300px] md:min-w-[350px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center font-bold text-white text-sm">FG</div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm">Fernando Gomes</h4>
+                                        <div class="text-xs text-zinc-500 mt-1">Há 6 meses</div>
+                                    </div>
+                                </div>
+                                <i class="fa-brands fa-google text-blue-500 opacity-50 text-lg"></i>
+                            </div>
+                            <div class="flex text-yellow-400 mb-3 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-zinc-300 text-sm leading-relaxed mb-4">"Agilidade e transparência. Cumpriram o prazo combinado e o carro saiu limpo e com a pintura perfeita. Recomendo a todos."</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="mt-10 text-center">
+                <a href="https://www.google.com/search?q=ferreira+custom&ie=UTF-8#lrd=0x94c63367c69ebfd5:0x8ffe4d96acb48e65,1,,,," target="_blank" class="inline-flex items-center gap-3 bg-white text-black px-8 py-3 rounded font-bold hover:bg-gray-200 transition shadow-lg">
+                    Ver mais avaliações <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Localização e Contato -->
+    <section id="localizacao" class="py-24 bg-[#0a0a0a]">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-8 items-stretch bg-darkCard border border-zinc-800 rounded-2xl overflow-hidden">
+                <!-- Informações -->
+                <div class="lg:w-1/2 p-8 md:p-12 space-y-8 flex flex-col justify-between">
+                    <div>
+                        <h2 class="font-brand text-3xl mb-6 text-white border-b border-zinc-800 pb-4">Nossa <span class="text-primary">Localização</span></h2>
+                        
+                        <div class="space-y-6">
+                            <!-- Endereço -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-zinc-900 rounded-lg flex items-center justify-center text-primary shrink-0 border border-zinc-800">
+                                    <i class="fa-solid fa-location-dot text-xl"></i>
+                                </div>
+                                <div>
+                                    <span class="block font-bold text-white mb-1 text-lg">Endereço</span>
+                                    <p class="text-zinc-400">Av. Brasília, 2399 - Vila Industrial<br>Piracicaba - SP, 13412-221</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Telefone -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-zinc-900 rounded-lg flex items-center justify-center text-primary shrink-0 border border-zinc-800">
+                                    <i class="fa-solid fa-phone text-xl"></i>
+                                </div>
+                                <div>
+                                    <span class="block font-bold text-white mb-1 text-lg">Telefone / WhatsApp</span>
+                                    <a href="https://wa.me/5519990155383" class="text-zinc-400 hover:text-white transition block">(19) 99015-5383</a>
+                                </div>
+                            </div>
+
+                            <!-- Horários -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-zinc-900 rounded-lg flex items-center justify-center text-primary shrink-0 border border-zinc-800">
+                                    <i class="fa-solid fa-clock text-xl"></i>
+                                </div>
+                                <div class="w-full">
+                                    <span class="block font-bold text-white mb-2 text-lg">Horário de Funcionamento</span>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-zinc-400 bg-zinc-900/50 p-3 rounded border border-zinc-800/50">
+                                        <div>
+                                            <strong class="text-white font-medium block">Seg a Qui:</strong> 08:30–12:00 / 13:00–18:00
+                                        </div>
+                                        <div>
+                                            <strong class="text-white font-medium block">Sexta:</strong> 08:30–12:00 / 13:00–17:00
+                                        </div>
+                                        <div class="sm:col-span-2 pt-2 mt-1 border-t border-zinc-800/50">
+                                            <strong class="text-primary font-medium">Sábado e Domingo: Fechado</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botões Rota -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-6">
+                        <a href="https://waze.com/ul?ll=-22.711842,-47.632298&navigate=yes" target="_blank" class="bg-[#33ccff] text-black p-3 rounded text-center hover:bg-[#0099cc] transition font-bold flex justify-center items-center gap-2">
+                            <i class="fa-brands fa-waze text-xl"></i> Waze
+                        </a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Av.+Brasília,+2399+-+Vila+Industrial,+Piracicaba+-+SP" target="_blank" class="bg-white text-black p-3 rounded text-center hover:bg-gray-200 transition font-bold flex justify-center items-center gap-2">
+                            <i class="fa-solid fa-map-location-dot text-xl"></i> Google Maps
+                        </a>
+                        <a href="https://m.uber.com/ul/?client_id=FREE&action=setPickup&pickup=my_location&dropoff[formatted_address]=Av.%20Bras%C3%ADlia,%202399%20-%20Vila%20Industrial,%20Piracicaba%20-%20SP" target="_blank" class="bg-black text-white border border-zinc-700 p-3 rounded text-center hover:bg-zinc-800 transition font-bold flex justify-center items-center gap-2 sm:col-span-2">
+                            <i class="fa-brands fa-uber text-xl"></i> Ir de Uber
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Mapa Iframe Waze -->
+                <div class="lg:w-1/2 min-h-[400px] border-l border-zinc-800 grayscale hover:grayscale-0 transition duration-700">
+                    <iframe 
+                        src="https://www.waze.com/en/live-map/directions/br/sp/ferreira-custom-funilaria-e-pintura?place=ChIJ1b-exmczxpQRZY60rJZN_o8" 
+                        class="w-full h-full min-h-[400px]" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-16 border-t border-zinc-900">
+        <div class="container mx-auto px-6 flex flex-col items-center">
+            <!-- Logo Grande no Rodapé -->
+            <div class="mb-8">
+                <img src="logo grande.jpg" alt="Ferreira Custom Logo" class="h-16 object-contain">
+            </div>
+            
+            <div class="flex justify-center gap-8 mb-8 text-zinc-500 text-3xl">
+                <a href="https://www.instagram.com/ferreiracustom.oficial/" target="_blank" class="hover:text-white transition" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/5519990155383" target="_blank" class="hover:text-brandGreen transition" title="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                <a href="https://www.google.com/search?q=ferreira+custom&ie=UTF-8#lrd=0x94c63367c69ebfd5:0x8ffe4d96acb48e65,1,,,," target="_blank" class="hover:text-blue-500 transition" title="Google Avaliações">
+                    <i class="fa-brands fa-google"></i>
+                </a>
+            </div>
+            
+            <p class="text-xs text-zinc-600 uppercase tracking-widest text-center">
+                © 2026 Ferreira Custom. Todos os direitos reservados.<br>
+                Av. Brasília, 2399 - Vila Industrial, Piracicaba - SP
+            </p>
+        </div>
+    </footer>
+
+    <!-- Botão de Voltar ao Topo -->
+    <a href="#home" id="backToTop" class="fixed bottom-6 right-6 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg shadow-primary/30 opacity-0 pointer-events-none transition-all duration-300 z-50">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 hidden flex justify-center items-center opacity-0 transition-opacity duration-300 cursor-zoom-out">
+        <img id="lightbox-img" src="" class="max-w-[90%] max-h-[90%] object-contain rounded shadow-2xl transform scale-95 transition-transform duration-300">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Menu Mobile
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+            mobileLinks.forEach(link => link.addEventListener('click', () => menu.classList.add('hidden')));
+
+            // Hero Background Carousel
+            const bgContainer = document.getElementById('hero-bg-container');
+            const images = [
+                'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1549399542-7e3f8b79c3d9?auto=format&fit=crop&q=80'
+            ];
+
+            images.forEach((imgUrl, index) => {
+                const div = document.createElement('div');
+                div.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
+                div.style.backgroundImage = `url('${imgUrl}')`;
+                bgContainer.appendChild(div);
+            });
+
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.carousel-slide');
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 6000);
+
+            // Carrossel de Avaliações (Auto-scroll)
+            const reviewsTrack = document.getElementById('reviews-track');
+            const prevReviewBtn = document.getElementById('prev-review');
+            const nextReviewBtn = document.getElementById('next-review');
+
+            if (reviewsTrack && prevReviewBtn && nextReviewBtn) {
+                const scrollAmount = 350;
+                let autoScrollInterval;
+
+                const startAutoScroll = () => {
+                    autoScrollInterval = setInterval(() => {
+                        if (reviewsTrack.scrollLeft + reviewsTrack.clientWidth >= reviewsTrack.scrollWidth - 10) {
+                            reviewsTrack.scrollTo({ left: 0, behavior: 'smooth' });
+                        } else {
+                            reviewsTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                        }
+                    }, 4000); // Rola a cada 4 segundos
+                };
+
+                const stopAutoScroll = () => clearInterval(autoScrollInterval);
+
+                prevReviewBtn.addEventListener('click', () => {
+                    reviewsTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                    stopAutoScroll(); startAutoScroll();
+                });
+
+                nextReviewBtn.addEventListener('click', () => {
+                    if (reviewsTrack.scrollLeft + reviewsTrack.clientWidth >= reviewsTrack.scrollWidth - 10) {
+                        reviewsTrack.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        reviewsTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    }
+                    stopAutoScroll(); startAutoScroll();
+                });
+
+                // Pausar ao interagir
+                reviewsTrack.addEventListener('mouseenter', stopAutoScroll);
+                reviewsTrack.addEventListener('mouseleave', startAutoScroll);
+                reviewsTrack.addEventListener('touchstart', stopAutoScroll, {passive: true});
+                reviewsTrack.addEventListener('touchend', startAutoScroll, {passive: true});
+
+                startAutoScroll();
+            }
+
+            // Back to top
+            const backToTop = document.getElementById('backToTop');
+            const navIncio = document.getElementById('nav-sobre');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 400) {
+                    backToTop.classList.add('opacity-100', 'pointer-events-auto');
+                    navIncio.classList.remove('hidden');
+                } else {
+                    backToTop.classList.remove('opacity-100', 'pointer-events-auto');
+                    navIncio.classList.add('hidden');
+                }
+            });
+
+            // Lightbox
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            document.querySelectorAll('.gallery-img').forEach(img => {
+                img.addEventListener('click', () => {
+                    lightboxImg.src = img.src;
+                    lightbox.classList.remove('hidden');
+                    setTimeout(() => {
+                        lightbox.classList.add('opacity-100');
+                        lightboxImg.classList.add('scale-100');
+                    }, 10);
+                });
+            });
+
+            lightbox.addEventListener('click', () => {
+                lightbox.classList.remove('opacity-100');
+                lightboxImg.classList.remove('scale-100');
+                setTimeout(() => lightbox.classList.add('hidden'), 300);
+            });
+
+            // Proteção Simples
+            document.addEventListener('contextmenu', e => e.preventDefault());
+        });
+    </script>
+</body>
+</html>
