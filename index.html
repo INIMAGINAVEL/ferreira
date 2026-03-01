@@ -98,7 +98,9 @@
         ::-webkit-scrollbar-thumb { background: #333; }
         ::-webkit-scrollbar-thumb:hover { background: #2F499F; }
 
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
         .glow-primary {
@@ -344,9 +346,9 @@
         </div>
     </section>
 
-    <!-- Avaliações Google (Ajustado para max-w-7xl e Avaliações Reais) -->
+    <!-- Avaliações Google -->
     <section id="avaliacoes" class="py-24 bg-darkBg border-b border-zinc-900 overflow-hidden">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-6 text-center">
             <div class="flex flex-col items-center mb-12">
                 <div class="inline-flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20 bg-white rounded-full mb-6 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                     <i class="fa-brands fa-google text-3xl lg:text-4xl text-[#4285F4]"></i>
@@ -355,117 +357,124 @@
                 <p class="text-zinc-400 text-center max-w-xl text-base lg:text-lg">O que nossos clientes dizem sobre o nosso trabalho.</p>
             </div>
 
-            <div class="relative max-w-9xl mx-auto px-8 md:px-12">
-                <button id="prev-review" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-zinc-800 text-white w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center hover:bg-primary transition shadow-lg border border-zinc-700"><i class="fa-solid fa-chevron-left text-lg"></i></button>
-                <button id="next-review" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-zinc-800 text-white w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center hover:bg-primary transition shadow-lg border border-zinc-700"><i class="fa-solid fa-chevron-right text-lg"></i></button>
+            <div class="relative max-w-9xl mx-auto px-0 md:px-12">
+                <button id="prev-review" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-zinc-800 text-white w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center hover:bg-primary transition shadow-lg border border-zinc-700 hidden md:flex"><i class="fa-solid fa-chevron-left text-lg"></i></button>
+                <button id="next-review" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-zinc-800 text-white w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center hover:bg-primary transition shadow-lg border border-zinc-700 hidden md:flex"><i class="fa-solid fa-chevron-right text-lg"></i></button>
 
-                <div id="reviews-track" class="flex gap-6 lg:gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar py-8 items-stretch">
+                <div id="reviews-track"
+                class="flex gap-6 overflow-x-auto snap-x snap-proximity scroll-smooth
+                hide-scrollbar py-6 px-4
+                scroll-pl-4
+                [scrollbar-width:none]
+                [-ms-overflow-style:none]
+                [-webkit-overflow-scrolling:touch]
+                overscroll-x-contain">
                     
                     <!-- João Carlos -->
-                    <div class="w-[85vw] sm:w-[360px] md:w-[420px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl flex flex-col justify-between h-auto shadow-lg">
+                    <div class="w-[88%] sm:w-[80%] md:w-[350px] shrink-0 snap-center border border-zinc-800 p-6 bg-white rounded-xl text-gray-800 shadow-lg flex flex-col justify-between will-change-transform text-left">
                         <div class="flex flex-col h-full">
                             <div class="flex justify-between items-start mb-6">
                                 <div class="flex items-center gap-4">
                                     <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-blue-600 flex items-center justify-center font-bold text-white text-sm lg:text-base shrink-0">JC</div>
                                     <div>
-                                        <h4 class="font-bold text-white text-sm lg:text-base leading-tight">João Carlos Soledade Silva</h4>
+                                        <h4 class="font-bold text-gray-900 text-sm lg:text-base leading-tight">João Carlos Soledade Silva</h4>
                                         <div class="text-xs lg:text-sm text-zinc-500 mt-1">Há 3 semanas</div>
                                     </div>
                                 </div>
                                 <i class="fa-brands fa-google text-blue-500 opacity-50 text-xl lg:text-2xl"></i>
                             </div>
                             <div class="flex text-yellow-400 mb-4 text-sm lg:text-base"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p class="text-zinc-300 text-sm lg:text-base leading-relaxed mb-2 grow">"Excelente trabalho de pintura que fizeram no meu carro. Meu carro saiu dela novo novamente. Recomendo vc levar seu carro na funilaria ferreira custom."</p>
+                            <p class="text-gray-600 text-sm lg:text-base leading-relaxed mb-2 grow">"Excelente trabalho de pintura que fizeram no meu carro. Meu carro saiu dela novo novamente. Recomendo vc levar seu carro na funilaria ferreira custom."</p>
                         </div>
                     </div>
 
                     <!-- Cassia Nishida -->
-                    <div class="w-[85vw] sm:w-[360px] md:w-[420px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl flex flex-col justify-between h-auto shadow-lg">
+                    <div class="w-[88%] sm:w-[80%] md:w-[350px] shrink-0 snap-center border border-zinc-800 p-6 bg-white rounded-xl text-gray-800 shadow-lg flex flex-col justify-between will-change-transform text-left">
                         <div class="flex flex-col h-full">
                             <div class="flex justify-between items-start mb-6">
                                 <div class="flex items-center gap-4">
                                     <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-pink-600 flex items-center justify-center font-bold text-white text-sm lg:text-base shrink-0">CN</div>
                                     <div>
-                                        <h4 class="font-bold text-white text-sm lg:text-base leading-tight">Cassia Nishida</h4>
+                                        <h4 class="font-bold text-gray-900 text-sm lg:text-base leading-tight">Cassia Nishida</h4>
                                         <div class="text-xs lg:text-sm text-zinc-500 mt-1">Há 4 meses</div>
                                     </div>
                                 </div>
                                 <i class="fa-brands fa-google text-blue-500 opacity-50 text-xl lg:text-2xl"></i>
                             </div>
                             <div class="flex text-yellow-400 mb-4 text-sm lg:text-base"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p class="text-zinc-300 text-sm lg:text-base leading-relaxed mb-2 grow">"Desde o primeiro contato fui muito bem atendida, com atenção e transparência. O resultado do trabalho ficou excelente e o preço justo! Muito bom! Recomendo!"</p>
+                            <p class="text-gray-600 text-sm lg:text-base leading-relaxed mb-2 grow">"Desde o primeiro contato fui muito bem atendida, com atenção e transparência. O resultado do trabalho ficou excelente e o preço justo! Muito bom! Recomendo!"</p>
                         </div>
                     </div>
 
                     <!-- Felipe Henrique -->
-                    <div class="w-[85vw] sm:w-[360px] md:w-[420px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl flex flex-col justify-between h-auto shadow-lg">
+                    <div class="w-[88%] sm:w-[80%] md:w-[350px] shrink-0 snap-center border border-zinc-800 p-6 bg-white rounded-xl text-gray-800 shadow-lg flex flex-col justify-between will-change-transform text-left">
                         <div class="flex flex-col h-full">
                             <div class="flex justify-between items-start mb-6">
                                 <div class="flex items-center gap-4">
                                     <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-green-600 flex items-center justify-center font-bold text-white text-sm lg:text-base shrink-0">FB</div>
                                     <div>
-                                        <h4 class="font-bold text-white text-sm lg:text-base leading-tight">Felipe Henrique Cruz Bizarria</h4>
+                                        <h4 class="font-bold text-gray-900 text-sm lg:text-base leading-tight">Felipe Henrique Cruz Bizarria</h4>
                                         <div class="text-xs lg:text-sm text-zinc-500 mt-1">Há 2 meses</div>
                                     </div>
                                 </div>
                                 <i class="fa-brands fa-google text-blue-500 opacity-50 text-xl lg:text-2xl"></i>
                             </div>
                             <div class="flex text-yellow-400 mb-4 text-sm lg:text-base"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p class="text-zinc-300 text-sm lg:text-base leading-relaxed mb-2 grow">"Excelencia em todos os aspectos, foi rapido para entregar o serviço, otimo atendimento, são super prestativos e atenciosos, indiquei para todos os conhecidos, e também um preço justo."</p>
+                            <p class="text-gray-600 text-sm lg:text-base leading-relaxed mb-2 grow">"Excelencia em todos os aspectos, foi rapido para entregar o serviço, otimo atendimento, são super prestativos e atenciosos, indiquei para todos os conhecidos, e também um preço justo."</p>
                         </div>
                     </div>
 
                     <!-- Daniela Degasperi -->
-                    <div class="w-[85vw] sm:w-[360px] md:w-[420px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl flex flex-col justify-between h-auto shadow-lg">
+                    <div class="w-[88%] sm:w-[80%] md:w-[350px] shrink-0 snap-center border border-zinc-800 p-6 bg-white rounded-xl text-gray-800 shadow-lg flex flex-col justify-between will-change-transform text-left">
                         <div class="flex flex-col h-full">
                             <div class="flex justify-between items-start mb-6">
                                 <div class="flex items-center gap-4">
                                     <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-purple-600 flex items-center justify-center font-bold text-white text-sm lg:text-base shrink-0">DF</div>
                                     <div>
-                                        <h4 class="font-bold text-white text-sm lg:text-base leading-tight">Daniela Degasperi Ferreira</h4>
+                                        <h4 class="font-bold text-gray-900 text-sm lg:text-base leading-tight">Daniela Degasperi Ferreira</h4>
                                         <div class="text-xs lg:text-sm text-zinc-500 mt-1">Há 4 meses</div>
                                     </div>
                                 </div>
                                 <i class="fa-brands fa-google text-blue-500 opacity-50 text-xl lg:text-2xl"></i>
                             </div>
                             <div class="flex text-yellow-400 mb-4 text-sm lg:text-base"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p class="text-zinc-300 text-sm lg:text-base leading-relaxed mb-2 grow">"Trabalho de excelência, resolução de problemas e dúvidas, prazo de entrega, atendimento espetacular, preço justo, enfim a melhor funilaria da cidade👏👏👏👏"</p>
+                            <p class="text-gray-600 text-sm lg:text-base leading-relaxed mb-2 grow">"Trabalho de excelência, resolução de problemas e dúvidas, prazo de entrega, atendimento espetacular, preço justo, enfim a melhor funilaria da cidade👏👏👏👏"</p>
                         </div>
                     </div>
 
                     <!-- Luiz Boizinho -->
-                    <div class="w-[85vw] sm:w-[360px] md:w-[420px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl flex flex-col justify-between h-auto shadow-lg">
+                    <div class="w-[88%] sm:w-[80%] md:w-[350px] shrink-0 snap-center border border-zinc-800 p-6 bg-white rounded-xl text-gray-800 shadow-lg flex flex-col justify-between will-change-transform text-left">
                         <div class="flex flex-col h-full">
                             <div class="flex justify-between items-start mb-6">
                                 <div class="flex items-center gap-4">
                                     <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-orange-600 flex items-center justify-center font-bold text-white text-sm lg:text-base shrink-0">LB</div>
                                     <div>
-                                        <h4 class="font-bold text-white text-sm lg:text-base leading-tight">Luiz Boizinho</h4>
+                                        <h4 class="font-bold text-gray-900 text-sm lg:text-base leading-tight">Luiz Boizinho</h4>
                                         <div class="text-xs lg:text-sm text-zinc-500 mt-1">Há 3 meses</div>
                                     </div>
                                 </div>
                                 <i class="fa-brands fa-google text-blue-500 opacity-50 text-xl lg:text-2xl"></i>
                             </div>
                             <div class="flex text-yellow-400 mb-4 text-sm lg:text-base"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p class="text-zinc-300 text-sm lg:text-base leading-relaxed mb-2 grow">"Ficou excelente a pintura, bom trabalho e no prazo certo. Gratidão por nos escolher!"</p>
+                            <p class="text-gray-600 text-sm lg:text-base leading-relaxed mb-2 grow">"Ficou excelente a pintura, bom trabalho e no prazo certo. Gratidão por nos escolher!"</p>
                         </div>
                     </div>
 
                     <!-- Juliano Saturno -->
-                    <div class="w-[85vw] sm:w-[360px] md:w-[420px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl flex flex-col justify-between h-auto shadow-lg">
+                    <div class="w-[88%] sm:w-[80%] md:w-[350px] shrink-0 snap-center border border-zinc-800 p-6 bg-white rounded-xl text-gray-800 shadow-lg flex flex-col justify-between will-change-transform text-left">
                         <div class="flex flex-col h-full">
                             <div class="flex justify-between items-start mb-6">
                                 <div class="flex items-center gap-4">
                                     <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-red-600 flex items-center justify-center font-bold text-white text-sm lg:text-base shrink-0">JS</div>
                                     <div>
-                                        <h4 class="font-bold text-white text-sm lg:text-base leading-tight">Juliano Saturno</h4>
+                                        <h4 class="font-bold text-gray-900 text-sm lg:text-base leading-tight">Juliano Saturno</h4>
                                         <div class="text-xs lg:text-sm text-zinc-500 mt-1">Há 4 meses</div>
                                     </div>
                                 </div>
                                 <i class="fa-brands fa-google text-blue-500 opacity-50 text-xl lg:text-2xl"></i>
                             </div>
                             <div class="flex text-yellow-400 mb-4 text-sm lg:text-base"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p class="text-zinc-300 text-sm lg:text-base leading-relaxed mb-2 grow">"Ótimo atendimento, ótimo trabalho. Recomendo com certeza."</p>
+                            <p class="text-gray-600 text-sm lg:text-base leading-relaxed mb-2 grow">"Ótimo atendimento, ótimo trabalho. Recomendo com certeza."</p>
                         </div>
                     </div>
 
