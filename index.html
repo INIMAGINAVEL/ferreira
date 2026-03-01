@@ -97,6 +97,12 @@
         .glow-primary {
             filter: drop-shadow(0 0 10px rgba(47, 73, 159, 0.6));
         }
+
+        /* Animação para o carrossel de marcas no fundo */
+        @keyframes scroll-logos {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
     </style>
 </head>
 <body class="font-sans antialiased overflow-x-hidden">
@@ -245,11 +251,19 @@
         </div>
     </section>
 
-    <!-- Todas as Marcas (Nova Secção) -->
-    <section class="relative py-20 bg-darkBg border-y border-zinc-900 overflow-hidden">
-        <!-- Imagem de fundo inserida via estilo inline para lidar com o espaço no nome do arquivo -->
-        <div class="absolute inset-0 z-0 opacity-30 bg-cover bg-center bg-fixed" style="background-image: url('logo marcas.jpg');"></div>
-        <div class="absolute inset-0 z-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
+    <!-- Todas as Marcas (Nova Secção com Carrossel de Fundo) -->
+    <section class="relative py-24 bg-darkBg border-y border-zinc-900 overflow-hidden flex items-center min-h-[400px]">
+        
+        <!-- Carrossel de Marcas D'água Animado -->
+        <!-- O 'filter invert' torna o fundo branco em preto e os logos em branco. A opacidade a 10% cria a marca d'água -->
+        <div class="absolute top-0 left-0 h-full w-[200%] flex animate-[scroll-logos_40s_linear_infinite] pointer-events-none opacity-10 filter invert z-0">
+            <!-- Usamos duas divs iguais para criar o loop contínuo sem quebras -->
+            <div class="w-1/2 h-full bg-contain bg-repeat-x bg-center" style="background-image: url('logo marcas.jpg');"></div>
+            <div class="w-1/2 h-full bg-contain bg-repeat-x bg-center" style="background-image: url('logo marcas.jpg');"></div>
+        </div>
+        
+        <!-- Gradiente para escurecer o fundo e garantir a leitura perfeita do texto -->
+        <div class="absolute inset-0 z-0 bg-gradient-to-r from-black/95 via-black/80 to-transparent pointer-events-none"></div>
         
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-2xl">
@@ -257,10 +271,10 @@
                     <i class="fa-solid fa-gears mr-2"></i> Multimarcas
                 </div>
                 <h2 class="font-brand text-3xl md:text-5xl mb-4 text-white">Trabalhamos com <br><span class="text-primary glow-primary">Todas as Marcas</span></h2>
-                <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                <p class="text-gray-300 text-lg leading-relaxed mb-8">
                     Independentemente do modelo, ano ou fabricante, a Ferreira Custom possui o conhecimento técnico e os equipamentos necessários para entregar um padrão de qualidade original de fábrica no seu veículo.
                 </p>
-                <a href="https://wa.me/5519990155383" target="_blank" class="inline-flex items-center gap-2 text-white font-bold hover:text-primary transition uppercase tracking-widest text-sm">
+                <a href="https://wa.me/5519990155383" target="_blank" class="inline-flex items-center gap-2 bg-primary text-white font-bold py-3 px-8 rounded hover:bg-primaryHover transition uppercase tracking-widest text-sm shadow-lg shadow-primary/30">
                     Fazer um orçamento <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
