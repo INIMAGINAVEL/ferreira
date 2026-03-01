@@ -98,9 +98,7 @@
         ::-webkit-scrollbar-thumb { background: #333; }
         ::-webkit-scrollbar-thumb:hover { background: #2F499F; }
 
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
         .glow-primary {
@@ -306,41 +304,42 @@
             </div>
             
             <div id="galeria-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                <!-- Lazy loading adicionado para otimização de velocidade -->
                 <div class="overflow-hidden rounded-xl aspect-square bg-zinc-900 shadow-md">
-                    <img src="galeria/1.jpg" alt="Serviço 1" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+1'">
+                    <img src="galeria/1.jpg" loading="lazy" alt="Serviço 1" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+1'">
                 </div>
                 <div class="overflow-hidden rounded-xl aspect-square bg-zinc-900 shadow-md">
-                    <img src="galeria/2.jpg" alt="Serviço 2" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+2'">
+                    <img src="galeria/2.jpg" loading="lazy" alt="Serviço 2" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+2'">
                 </div>
                 <div class="overflow-hidden rounded-xl aspect-square bg-zinc-900 shadow-md">
-                    <img src="galeria/3.jpg" alt="Serviço 3" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+3'">
+                    <img src="galeria/3.jpg" loading="lazy" alt="Serviço 3" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+3'">
                 </div>
                 <div class="overflow-hidden rounded-xl aspect-square bg-zinc-900 shadow-md">
-                    <img src="galeria/4.jpg" alt="Serviço 4" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+4'">
+                    <img src="galeria/4.jpg" loading="lazy" alt="Serviço 4" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+4'">
                 </div>
                 <div class="overflow-hidden rounded-xl aspect-square bg-zinc-900 shadow-md">
-                    <img src="galeria/5.jpg" alt="Serviço 5" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+5'">
+                    <img src="galeria/5.jpg" loading="lazy" alt="Serviço 5" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+5'">
                 </div>
                 <div class="overflow-hidden rounded-xl aspect-square bg-zinc-900 shadow-md">
-                    <img src="galeria/6.jpg" alt="Serviço 6" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+6'">
+                    <img src="galeria/6.jpg" loading="lazy" alt="Serviço 6" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+6'">
                 </div>
                 <div class="overflow-hidden rounded-xl aspect-square bg-zinc-900 shadow-md">
-                    <img src="galeria/7.jpg" alt="Serviço 7" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+7'">
+                    <img src="galeria/7.jpg" loading="lazy" alt="Serviço 7" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+7'">
                 </div>
                 <div class="overflow-hidden rounded-xl aspect-square bg-zinc-900 shadow-md">
-                    <img src="galeria/8.jpg" alt="Serviço 8" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+8'">
+                    <img src="galeria/8.jpg" loading="lazy" alt="Serviço 8" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+8'">
                 </div>
                 <div class="overflow-hidden rounded-xl aspect-square bg-zinc-900 shadow-md">
-                    <img src="galeria/9.jpg" alt="Serviço 9" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+9'">
+                    <img src="galeria/9.jpg" loading="lazy" alt="Serviço 9" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+9'">
                 </div>
                 <div class="overflow-hidden rounded-xl aspect-square bg-zinc-900 shadow-md">
-                    <img src="galeria/10.jpg" alt="Serviço 10" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+10'">
+                    <img src="galeria/10.jpg" loading="lazy" alt="Serviço 10" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+10'">
                 </div>
                 <div class="overflow-hidden rounded-xl aspect-square bg-zinc-900 shadow-md">
-                    <img src="galeria/11.jpg" alt="Serviço 11" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+11'">
+                    <img src="galeria/11.jpg" loading="lazy" alt="Serviço 11" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+11'">
                 </div>
                 <div class="overflow-hidden rounded-xl aspect-square bg-zinc-900 shadow-md">
-                    <img src="galeria/12.jpg" alt="Serviço 12" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+12'">
+                    <img src="galeria/12.jpg" loading="lazy" alt="Serviço 12" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+12'">
                 </div>
             </div>
         </div>
@@ -357,10 +356,12 @@
                 <p class="text-zinc-400 text-center max-w-xl text-base lg:text-lg">O que nossos clientes dizem sobre o nosso trabalho.</p>
             </div>
 
+            <!-- Container alargado e configurado para mobile -->
             <div class="relative max-w-9xl mx-auto px-0 md:px-12">
                 <button id="prev-review" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-zinc-800 text-white w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center hover:bg-primary transition shadow-lg border border-zinc-700 hidden md:flex"><i class="fa-solid fa-chevron-left text-lg"></i></button>
                 <button id="next-review" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-zinc-800 text-white w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center hover:bg-primary transition shadow-lg border border-zinc-700 hidden md:flex"><i class="fa-solid fa-chevron-right text-lg"></i></button>
 
+                <!-- Track Otimizada -->
                 <div id="reviews-track"
                 class="flex gap-6 overflow-x-auto snap-x snap-proximity scroll-smooth
                 hide-scrollbar py-6 px-4
@@ -370,7 +371,6 @@
                 [-webkit-overflow-scrolling:touch]
                 overscroll-x-contain">
                     
-                    <!-- João Carlos -->
                     <div class="w-[88%] sm:w-[80%] md:w-[350px] shrink-0 snap-center border border-zinc-800 p-6 bg-white rounded-xl text-gray-800 shadow-lg flex flex-col justify-between will-change-transform text-left">
                         <div class="flex flex-col h-full">
                             <div class="flex justify-between items-start mb-6">
@@ -388,7 +388,6 @@
                         </div>
                     </div>
 
-                    <!-- Cassia Nishida -->
                     <div class="w-[88%] sm:w-[80%] md:w-[350px] shrink-0 snap-center border border-zinc-800 p-6 bg-white rounded-xl text-gray-800 shadow-lg flex flex-col justify-between will-change-transform text-left">
                         <div class="flex flex-col h-full">
                             <div class="flex justify-between items-start mb-6">
@@ -406,7 +405,6 @@
                         </div>
                     </div>
 
-                    <!-- Felipe Henrique -->
                     <div class="w-[88%] sm:w-[80%] md:w-[350px] shrink-0 snap-center border border-zinc-800 p-6 bg-white rounded-xl text-gray-800 shadow-lg flex flex-col justify-between will-change-transform text-left">
                         <div class="flex flex-col h-full">
                             <div class="flex justify-between items-start mb-6">
@@ -424,7 +422,6 @@
                         </div>
                     </div>
 
-                    <!-- Daniela Degasperi -->
                     <div class="w-[88%] sm:w-[80%] md:w-[350px] shrink-0 snap-center border border-zinc-800 p-6 bg-white rounded-xl text-gray-800 shadow-lg flex flex-col justify-between will-change-transform text-left">
                         <div class="flex flex-col h-full">
                             <div class="flex justify-between items-start mb-6">
@@ -442,7 +439,6 @@
                         </div>
                     </div>
 
-                    <!-- Luiz Boizinho -->
                     <div class="w-[88%] sm:w-[80%] md:w-[350px] shrink-0 snap-center border border-zinc-800 p-6 bg-white rounded-xl text-gray-800 shadow-lg flex flex-col justify-between will-change-transform text-left">
                         <div class="flex flex-col h-full">
                             <div class="flex justify-between items-start mb-6">
@@ -460,7 +456,6 @@
                         </div>
                     </div>
 
-                    <!-- Juliano Saturno -->
                     <div class="w-[88%] sm:w-[80%] md:w-[350px] shrink-0 snap-center border border-zinc-800 p-6 bg-white rounded-xl text-gray-800 shadow-lg flex flex-col justify-between will-change-transform text-left">
                         <div class="flex flex-col h-full">
                             <div class="flex justify-between items-start mb-6">
@@ -536,7 +531,7 @@
                 </div>
                 
                 <div class="lg:w-1/2 min-h-[400px] lg:min-h-[550px] border-l border-zinc-800 grayscale hover:grayscale-0 transition duration-700">
-                    <iframe src="https://embed.waze.com/iframe?zoom=16&lat=-22.680639&lon=-47.671823&ct=livemap&pin=1" class="w-full h-full min-h-[400px] lg:min-h-[550px]" style="border:0;" loading="lazy"></iframe>
+                    <iframe src="https://embed.waze.com/iframe?zoom=16&lat=-22.680639&lon=-47.671823&ct=livemap&pin=1" title="Mapa de Localização da Ferreira Custom" class="w-full h-full min-h-[400px] lg:min-h-[550px]" style="border:0;" loading="lazy"></iframe>
                 </div>
             </div>
 
@@ -575,15 +570,22 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- MENU MOBILE ---
             const btn = document.getElementById('mobile-menu-btn');
             const menu = document.getElementById('mobile-menu');
             const mobileLinks = document.querySelectorAll('.mobile-link');
             const logoLink = document.getElementById('logo-link'); 
+            const btnIcon = btn ? btn.querySelector('i') : null;
 
             const closeMobileMenu = () => {
                 if (menu) {
                     menu.classList.add('hidden');
                     menu.classList.remove('flex');
+                    if(btnIcon) {
+                        btnIcon.classList.remove('fa-xmark');
+                        btnIcon.classList.add('fa-bars-staggered');
+                    }
                 }
             };
 
@@ -591,66 +593,100 @@
                 btn.addEventListener('click', () => {
                     menu.classList.toggle('hidden');
                     menu.classList.toggle('flex');
+                    if (menu.classList.contains('hidden')) {
+                        if(btnIcon) { btnIcon.classList.remove('fa-xmark'); btnIcon.classList.add('fa-bars-staggered'); }
+                    } else {
+                        if(btnIcon) { btnIcon.classList.remove('fa-bars-staggered'); btnIcon.classList.add('fa-xmark'); }
+                    }
                 });
             }
             if (mobileLinks) mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
             if (logoLink) logoLink.addEventListener('click', closeMobileMenu);
 
+            // --- SCROLL OPTIMIZADO (RAF) ---
             const header = document.getElementById('main-header');
             const headerContainer = document.getElementById('header-container');
             const headerLogo = document.getElementById('header-logo');
-
-            if (header && headerContainer && headerLogo) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 50) {
-                        header.classList.add('scrolled');
-                        headerContainer.classList.remove('py-6');
-                        headerContainer.classList.add('py-3'); 
-                        headerLogo.classList.remove('w-[180px]', 'sm:w-[220px]', 'lg:w-[340px]');
-                        headerLogo.classList.add('w-[150px]', 'sm:w-[180px]', 'lg:w-[240px]');
-                    } else {
-                        header.classList.remove('scrolled');
-                        headerContainer.classList.add('py-6');
-                        headerContainer.classList.remove('py-3');
-                        headerLogo.classList.remove('w-[150px]', 'sm:w-[180px]', 'lg:w-[240px]');
-                        headerLogo.classList.add('w-[180px]', 'sm:w-[220px]', 'lg:w-[340px]');
-                    }
-                });
-            }
-
-            // NEON INDICATOR
+            
             const navServicos = document.getElementById('nav-servicos');
             const navGaleria = document.getElementById('nav-galeria');
             const navLoc = document.getElementById('nav-loc');
-
             const servicosGrid = document.getElementById('servicos-grid');
             const trabalhosSub = document.getElementById('trabalhos-subtitle');
             const galeriaGrid = document.getElementById('galeria-grid');
             const btnAvaliacoes = document.getElementById('btn-avaliacoes');
             const locAddressLine = document.getElementById('loc-address-line');
             const footerLine = document.getElementById('footer-line');
+            const scrollDownBtn = document.getElementById('scrollDownBtn');
+            const docBody = document.body;
 
-            if (navServicos && navGaleria && navLoc) {
-                window.addEventListener('scroll', () => {
-                    const vBottom = window.innerHeight;
-                    const getRect = (el) => el ? el.getBoundingClientRect() : { top: 99999, bottom: 99999 };
+            let isScrolling = false;
 
-                    const isServicos = getRect(servicosGrid).bottom <= vBottom && getRect(trabalhosSub).bottom > vBottom;
-                    const isTrabalhos = getRect(galeriaGrid).top + 100 <= vBottom && getRect(btnAvaliacoes).top > vBottom;
-                    const isLoc = getRect(locAddressLine).bottom <= vBottom && getRect(footerLine).top > vBottom;
+            window.addEventListener('scroll', () => {
+                if (!isScrolling) {
+                    window.requestAnimationFrame(() => {
+                        const scrollY = window.scrollY;
+                        const vBottom = window.innerHeight + scrollY;
+                        const docHeight = docBody.offsetHeight;
 
-                    const toggleNeon = (element, isActive) => {
-                        if (isActive) element.classList.add('neon-active');
-                        else element.classList.remove('neon-active');
-                    };
+                        // 1. Cabeçalho Dinâmico
+                        if (header && headerContainer && headerLogo) {
+                            if (scrollY > 50) {
+                                header.classList.add('scrolled');
+                                headerContainer.classList.remove('py-6');
+                                headerContainer.classList.add('py-3'); 
+                                headerLogo.classList.remove('w-[180px]', 'sm:w-[220px]', 'lg:w-[340px]');
+                                headerLogo.classList.add('w-[150px]', 'sm:w-[180px]', 'lg:w-[240px]');
+                            } else {
+                                header.classList.remove('scrolled');
+                                headerContainer.classList.add('py-6');
+                                headerContainer.classList.remove('py-3');
+                                headerLogo.classList.remove('w-[150px]', 'sm:w-[180px]', 'lg:w-[240px]');
+                                headerLogo.classList.add('w-[180px]', 'sm:w-[220px]', 'lg:w-[340px]');
+                            }
+                        }
 
-                    toggleNeon(navServicos, isServicos);
-                    toggleNeon(navGaleria, isTrabalhos);
-                    toggleNeon(navLoc, isLoc);
-                });
+                        // 2. Indicador Neon
+                        if (navServicos && navGaleria && navLoc) {
+                            const getRect = (el) => el ? el.getBoundingClientRect() : { top: 99999, bottom: 99999 };
+                            const currentVBottom = window.innerHeight;
+
+                            const isServicos = getRect(servicosGrid).bottom <= currentVBottom && getRect(trabalhosSub).bottom > currentVBottom;
+                            const isTrabalhos = getRect(galeriaGrid).top + 100 <= currentVBottom && getRect(btnAvaliacoes).top > currentVBottom;
+                            const isLoc = getRect(locAddressLine).bottom <= currentVBottom && getRect(footerLine).top > currentVBottom;
+
+                            const toggleNeon = (element, isActive) => {
+                                if (isActive) element.classList.add('neon-active');
+                                else element.classList.remove('neon-active');
+                            };
+
+                            toggleNeon(navServicos, isServicos);
+                            toggleNeon(navGaleria, isTrabalhos);
+                            toggleNeon(navLoc, isLoc);
+                        }
+
+                        // 3. Botão de Scroll Down
+                        if (scrollDownBtn) {
+                            if (vBottom >= docHeight - 150) { 
+                                scrollDownBtn.style.opacity = '0'; 
+                                scrollDownBtn.style.pointerEvents = 'none'; 
+                            } else { 
+                                scrollDownBtn.style.opacity = '1'; 
+                                scrollDownBtn.style.pointerEvents = 'auto'; 
+                            }
+                        }
+
+                        isScrolling = false;
+                    });
+                    isScrolling = true;
+                }
+            });
+
+            if (scrollDownBtn) {
+                scrollDownBtn.addEventListener('click', () => window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' }));
             }
 
-            // CARROSSEL
+            // --- CARROSSEL DE IMAGENS ---
             try {
                 const bgContainer = document.getElementById('hero-bg-container');
                 if (bgContainer) {
@@ -673,39 +709,52 @@
                 }
             } catch (err) { console.error(err); }
 
-            const scrollDownBtn = document.getElementById('scrollDownBtn');
-            if (scrollDownBtn) {
-                scrollDownBtn.addEventListener('click', () => window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' }));
-                window.addEventListener('scroll', () => {
-                    const scrollPos = window.innerHeight + window.scrollY;
-                    const docHeight = document.body.offsetHeight;
-                    if (scrollPos >= docHeight - 150) { scrollDownBtn.style.opacity = '0'; scrollDownBtn.style.pointerEvents = 'none'; }
-                    else { scrollDownBtn.style.opacity = '1'; scrollDownBtn.style.pointerEvents = 'auto'; }
-                });
-            }
-
+            // --- CARROSSEL DE AVALIAÇÕES (Seguro contra vazamento de memória) ---
             const reviewsTrack = document.getElementById('reviews-track');
             const prevReviewBtn = document.getElementById('prev-review');
             const nextReviewBtn = document.getElementById('next-review');
             if (reviewsTrack && prevReviewBtn && nextReviewBtn) {
                 const scrollAmount = 350;
                 let interval;
-                const start = () => interval = setInterval(() => {
-                    if (reviewsTrack.scrollLeft + reviewsTrack.clientWidth >= reviewsTrack.scrollWidth - 10) reviewsTrack.scrollTo({ left: 0, behavior: 'smooth' });
-                    else reviewsTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                }, 4000);
+                
+                const start = () => {
+                    clearInterval(interval);
+                    interval = setInterval(() => {
+                        if (reviewsTrack.scrollLeft + reviewsTrack.clientWidth >= reviewsTrack.scrollWidth - 10) {
+                            reviewsTrack.scrollTo({ left: 0, behavior: 'smooth' });
+                        } else {
+                            reviewsTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                        }
+                    }, 4000);
+                };
+                
                 const stop = () => clearInterval(interval);
-                prevReviewBtn.addEventListener('click', () => { reviewsTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' }); stop(); start(); });
-                nextReviewBtn.addEventListener('click', () => { 
-                    if (reviewsTrack.scrollLeft + reviewsTrack.clientWidth >= reviewsTrack.scrollWidth - 10) reviewsTrack.scrollTo({ left: 0, behavior: 'smooth' });
-                    else reviewsTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                    stop(); start(); 
+                
+                prevReviewBtn.addEventListener('click', () => { 
+                    reviewsTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' }); 
+                    stop(); 
+                    start(); 
                 });
+                
+                nextReviewBtn.addEventListener('click', () => { 
+                    if (reviewsTrack.scrollLeft + reviewsTrack.clientWidth >= reviewsTrack.scrollWidth - 10) {
+                        reviewsTrack.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        reviewsTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    }
+                    stop(); 
+                    start(); 
+                });
+                
                 reviewsTrack.addEventListener('mouseenter', stop);
                 reviewsTrack.addEventListener('mouseleave', start);
+                reviewsTrack.addEventListener('touchstart', stop, {passive: true});
+                reviewsTrack.addEventListener('touchend', start, {passive: true});
+                
                 start();
             }
 
+            // --- LIGHTBOX DA GALERIA ---
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             if (lightbox && lightboxImg) {
@@ -723,6 +772,7 @@
                 });
             }
 
+            // --- PROTEÇÕES DO SITE ---
             document.addEventListener('contextmenu', e => e.preventDefault());
             document.addEventListener('keydown', e => {
                 if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) || (e.ctrlKey && ['U', 'S'].includes(e.key.toUpperCase()))) e.preventDefault();
