@@ -142,11 +142,13 @@
             <!-- Grupo Esquerda (Desktop) - Serviços e Trabalhos -->
             <div class="hidden lg:flex items-center gap-10 xl:gap-14">
                 <nav class="reveal-on-scroll flex gap-10 xl:gap-14 text-[17px] font-bold text-white/90 uppercase tracking-[0.12em]">
-                    <a href="#servicos" class="hover:text-primary transition-colors py-2 relative group">Serviços
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    <a href="#servicos" class="desktop-nav-link hover:text-primary transition-colors py-2 relative group">Serviços
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary/30 transition-all duration-300 group-hover:w-full"></span>
+                        <span class="scroll-progress absolute -bottom-1 left-0 h-0.5 bg-primary shadow-[0_0_8px_rgba(47,73,159,0.8)]" style="width: 0%;"></span>
                     </a>
-                    <a href="#galeria" class="hover:text-primary transition-colors py-2 relative group">Trabalhos
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    <a href="#galeria" class="desktop-nav-link hover:text-primary transition-colors py-2 relative group">Trabalhos
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary/30 transition-all duration-300 group-hover:w-full"></span>
+                        <span class="scroll-progress absolute -bottom-1 left-0 h-0.5 bg-primary shadow-[0_0_8px_rgba(47,73,159,0.8)]" style="width: 0%;"></span>
                     </a>
                 </nav>
             </div>
@@ -162,8 +164,9 @@
             <!-- Grupo Direita (Desktop) - Localização e WhatsApp -->
             <div class="flex items-center gap-6 xl:gap-10">
                 <nav class="reveal-on-scroll hidden lg:flex text-[17px] font-bold text-white/90 uppercase tracking-[0.12em]">
-                    <a href="#localizacao" class="hover:text-primary transition-colors py-2 relative group">Localização
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    <a href="#localizacao" class="desktop-nav-link hover:text-primary transition-colors py-2 relative group">Localização
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary/30 transition-all duration-300 group-hover:w-full"></span>
+                        <span class="scroll-progress absolute -bottom-1 left-0 h-0.5 bg-primary shadow-[0_0_8px_rgba(47,73,159,0.8)]" style="width: 0%;"></span>
                     </a>
                 </nav>
                 
@@ -441,6 +444,35 @@
                         headerLogo.classList.remove('w-[150px]', 'sm:w-[180px]', 'lg:w-[240px]');
                         headerLogo.classList.add('w-[180px]', 'sm:w-[220px]', 'lg:w-[340px]');
                     }
+                });
+            }
+
+            // --- INDICADOR DE PROGRESSO DE SCROLL NOS MENUS ---
+            const desktopNavLinks = document.querySelectorAll('.desktop-nav-link');
+            if (desktopNavLinks.length > 0) {
+                window.addEventListener('scroll', () => {
+                    const scrollY = window.scrollY;
+                    
+                    desktopNavLinks.forEach(link => {
+                        const targetId = link.getAttribute('href').substring(1);
+                        const section = document.getElementById(targetId);
+                        const progressSpan = link.querySelector('.scroll-progress');
+                        
+                        if (section && progressSpan) {
+                            // Ajuste para a linha começar a preencher quando a secção chega um pouco abaixo do cabeçalho
+                            const sectionTop = section.offsetTop - 150; 
+                            const sectionHeight = section.offsetHeight;
+                            
+                            let progress = 0;
+                            if (scrollY > sectionTop) {
+                                progress = ((scrollY - sectionTop) / sectionHeight) * 100;
+                            }
+                            
+                            // Limita a linha entre 0% e 100% de largura
+                            progress = Math.max(0, Math.min(100, progress));
+                            progressSpan.style.width = progress + '%';
+                        }
+                    });
                 });
             }
 
