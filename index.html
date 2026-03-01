@@ -7,6 +7,7 @@
     
     <!-- Favicon -->
     <link rel="icon" href="logo1.png" type="image/png">
+    <link rel="shortcut icon" href="logo1.png" type="image/png">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -43,7 +44,7 @@
     <style>
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 120px; /* Compensação para o cabeçalho maior */
+            scroll-padding-top: 120px; 
         }
         body {
             background-color: #0d0d0d;
@@ -103,46 +104,68 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
+
+        /* Efeitos do Cabeçalho Dinâmico */
+        #main-header {
+            background-color: transparent;
+            border-bottom-color: transparent;
+        }
+        
+        .reveal-on-scroll {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Classe ativada por JS (Cinza Chumbo leve com blur) */
+        #main-header.scrolled {
+            background-color: rgba(45, 45, 48, 0.95); 
+            backdrop-filter: blur(8px);
+            border-bottom-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        #main-header.scrolled .reveal-on-scroll {
+            opacity: 1;
+            pointer-events: auto;
+        }
     </style>
 </head>
 <body class="font-sans antialiased overflow-x-hidden relative">
 
-    <!-- Cabeçalho (Header) FIXO -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-black/95 backdrop-blur-md border-b border-zinc-800/50 transition-all">
-        <!-- Enfeites Azuis nos Cantos -->
-        <div class="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-primary pointer-events-none"></div>
-        <div class="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-primary pointer-events-none"></div>
-        <div class="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-primary pointer-events-none"></div>
-        <div class="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-primary pointer-events-none"></div>
-
-        <div class="px-4 py-4 flex justify-between items-center relative z-20 container mx-auto min-h-[90px]">
+    <!-- Cabeçalho (Header) FIXO E DINÂMICO -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b">
+        
+        <div id="header-container" class="px-4 flex justify-between items-center relative z-20 container mx-auto min-h-[90px] transition-all duration-500 py-4">
             
-            <!-- Esquerda (Navegação Desktop & Espaçador Mobile) -->
+            <!-- Esquerda (Navegação Desktop - Oculta inicialmente) -->
             <div class="flex-1 flex justify-start items-center">
-                <nav class="hidden lg:flex gap-8 text-sm font-semibold text-white uppercase tracking-widest">
+                <nav class="reveal-on-scroll hidden lg:flex gap-8 text-sm font-semibold text-white uppercase tracking-widest">
                     <a href="#servicos" class="hover:text-primary transition">Serviços</a>
                     <a href="#galeria" class="hover:text-primary transition">Trabalhos</a>
                 </nav>
             </div>
 
-            <!-- Centro (Logo Grande Maximizado em Largura) -->
-            <a href="#home" class="flex justify-center items-center flex-shrink-0 z-30 mx-2">
+            <!-- Centro (Logo Grande Sempre Visível) -->
+            <a href="#home" class="flex justify-center items-center flex-shrink-0 z-30 mx-2 transition-transform duration-300 hover:scale-105">
                 <img src="logo2.png" alt="Ferreira Custom Logo" class="w-[200px] md:w-[350px] lg:w-[480px] object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
             </a>
 
-            <!-- Direita (Navegação Desktop & Botões Mobile) -->
+            <!-- Direita (Navegação Desktop Oculta & Botão WhatsApp Sempre Visível) -->
             <div class="flex-1 flex justify-end items-center gap-4 lg:gap-8">
-                <nav class="hidden lg:flex gap-8 text-sm font-semibold text-white uppercase tracking-widest items-center">
+                <!-- Links Desktop (Ocultos inicialmente) -->
+                <nav class="reveal-on-scroll hidden lg:flex gap-8 text-sm font-semibold text-white uppercase tracking-widest items-center">
                     <a href="#avaliacoes" class="hover:text-primary transition">Avaliações</a>
+                    <a href="#localizacao" class="hover:text-primary transition">Localização</a>
                 </nav>
                 
-                <!-- Botão Retangular WhatsApp -->
-                <a href="https://wa.me/5519990155383" target="_blank" class="hidden sm:flex bg-brandGreen hover:bg-green-500 text-black font-bold py-2.5 px-5 rounded transition items-center gap-2 text-sm uppercase tracking-widest shadow-lg shadow-brandGreen/20">
-                    <i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp
+                <!-- Botão WhatsApp Responsivo (Sempre Visível) -->
+                <a href="https://wa.me/5519990155383" target="_blank" class="flex items-center justify-center bg-brandGreen hover:bg-green-500 text-black font-bold transition shadow-lg shadow-brandGreen/20 w-11 h-11 rounded-full lg:w-auto lg:h-auto lg:rounded lg:py-2.5 lg:px-5 lg:gap-2">
+                    <i class="fa-brands fa-whatsapp text-[26px] lg:text-xl"></i>
+                    <span class="hidden lg:block text-sm uppercase tracking-widest">WhatsApp</span>
                 </a>
                 
-                <!-- Botão Menu Mobile -->
-                <button id="mobile-menu-btn" class="text-white text-3xl lg:hidden ml-2"><i class="fa-solid fa-bars-staggered"></i></button>
+                <!-- Botão Menu Mobile (Oculto inicialmente, aparece com o scroll) -->
+                <button id="mobile-menu-btn" class="reveal-on-scroll text-white text-3xl lg:hidden ml-2"><i class="fa-solid fa-bars-staggered"></i></button>
             </div>
         </div>
 
@@ -192,8 +215,8 @@
     </section>
 
     <!-- Serviços -->
-    <section id="servicos" class="py-24 bg-darkBg">
-        <div class="container mx-auto px-6">
+    <section id="servicos" class="py-24 bg-darkBg relative">
+        <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-16">
                 <h2 class="font-brand text-3xl md:text-5xl mb-4 text-white">Nossos <span class="text-primary">Serviços</span></h2>
                 <div class="h-1 w-20 bg-primary mx-auto"></div>
@@ -288,7 +311,7 @@
                     <p class="text-zinc-500">Confira a qualidade do nosso acabamento.</p>
                 </div>
                 
-                <!-- Instagram Destacado -->
+                <!-- Instagram Destacado com @ original -->
                 <a href="https://www.instagram.com/ferreiracustom.oficial/" target="_blank" class="bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white font-bold tracking-widest text-sm md:text-base px-8 py-4 rounded-full transition flex items-center gap-3 shadow-[0_0_20px_rgba(220,39,67,0.3)] hover:shadow-[0_0_30px_rgba(220,39,67,0.5)] transform hover:scale-105">
                     <i class="fa-brands fa-instagram text-3xl md:text-4xl"></i> @FERREIRACUSTOM.OFICIAL
                 </a>
@@ -592,6 +615,27 @@
 
             btn.addEventListener('click', () => menu.classList.toggle('hidden'));
             mobileLinks.forEach(link => link.addEventListener('click', () => menu.classList.add('hidden')));
+
+            // Scroll Logic for Header Reveal
+            const header = document.getElementById('main-header');
+            const headerContainer = document.getElementById('header-container');
+            const servicos = document.getElementById('servicos');
+            
+            window.addEventListener('scroll', () => {
+                // Ativa a barra de navegação quando o utilizador faz scroll para baixo de "Nossos Serviços"
+                // servicos.offsetTop é o início da box, servicos.offsetHeight é a altura dela
+                const triggerPoint = servicos.offsetTop + servicos.offsetHeight - 80;
+                
+                if (window.scrollY > triggerPoint) {
+                    header.classList.add('scrolled');
+                    headerContainer.classList.remove('py-4');
+                    headerContainer.classList.add('py-2'); // encolhe um pouco o cabeçalho ao descer
+                } else {
+                    header.classList.remove('scrolled');
+                    headerContainer.classList.add('py-4');
+                    headerContainer.classList.remove('py-2');
+                }
+            });
 
             // Hero Background Carousel - Puxando fotos da pasta carrossel
             const bgContainer = document.getElementById('hero-bg-container');
