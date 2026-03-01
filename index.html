@@ -70,7 +70,6 @@
             background-size: cover;
             background-position: center;
             opacity: 0;
-            transition: opacity 2s ease-in-out;
             transform: scale(1.1);
             transition: opacity 2s ease-in-out, transform 10s linear;
         }
@@ -154,7 +153,7 @@
 
             <!-- Centro (Logo com Névoa Branca) -->
             <div class="flex justify-center items-center z-30 flex-shrink-0">
-                <a href="#home" class="relative flex justify-center items-center group">
+                <a href="#home" class="relative flex justify-center items-center group" id="logo-link">
                     <div class="absolute inset-0 bg-white/10 blur-3xl rounded-full scale-[1.5] opacity-80 pointer-events-none group-hover:opacity-100 transition-opacity duration-500"></div>
                     <img id="header-logo" src="logo2.png" alt="Ferreira Custom Logo" class="relative w-[180px] sm:w-[220px] lg:w-[340px] object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all duration-500 ease-in-out hover:scale-105 origin-center">
                 </a>
@@ -392,39 +391,95 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- MENU MOBILE ---
             const btn = document.getElementById('mobile-menu-btn');
             const menu = document.getElementById('mobile-menu');
             const mobileLinks = document.querySelectorAll('.mobile-link');
+            const logoLink = document.getElementById('logo-link'); // Referência ao link do logo
+
+            // Função segura para fechar o menu mobile
+            const closeMobileMenu = () => {
+                if (menu) {
+                    menu.classList.add('hidden');
+                    menu.classList.remove('flex');
+                }
+            };
+
+            if (btn && menu) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    menu.classList.toggle('flex');
+                });
+            }
+            
+            if (mobileLinks) {
+                mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
+            }
+            
+            // Fecha o menu ao clicar no logo (Corrigindo o bug mencionado)
+            if (logoLink) {
+                logoLink.addEventListener('click', closeMobileMenu);
+            }
+
+            // --- CABEÇALHO DINÂMICO ---
             const header = document.getElementById('main-header');
             const headerContainer = document.getElementById('header-container');
             const headerLogo = document.getElementById('header-logo');
 
-            btn.addEventListener('click', () => {
-                menu.classList.toggle('hidden');
-                menu.classList.toggle('flex');
-            });
-            
-            mobileLinks.forEach(link => link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-                menu.classList.remove('flex');
-            }));
+            if (header && headerContainer && headerLogo) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                        headerContainer.classList.remove('py-6');
+                        headerContainer.classList.add('py-3'); 
+                        headerLogo.classList.remove('w-[180px]', 'sm:w-[220px]', 'lg:w-[340px]');
+                        headerLogo.classList.add('w-[150px]', 'sm:w-[180px]', 'lg:w-[240px]');
+                    } else {
+                        header.classList.remove('scrolled');
+                        headerContainer.classList.add('py-6');
+                        headerContainer.classList.remove('py-3');
+                        headerLogo.classList.remove('w-[150px]', 'sm:w-[180px]', 'lg:w-[240px]');
+                        headerLogo.classList.add('w-[180px]', 'sm:w-[220px]', 'lg:w-[340px]');
+                    }
+                });
+            }
 
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                    headerContainer.classList.remove('py-6');
-                    headerContainer.classList.add('py-3'); 
-                    headerLogo.classList.remove('w-[180px]', 'sm:w-[220px]', 'lg:w-[340px]');
-                    headerLogo.classList.add('w-[150px]', 'sm:w-[180px]', 'lg:w-[240px]');
-                } else {
-                    header.classList.remove('scrolled');
-                    headerContainer.classList.add('py-6');
-                    headerContainer.classList.remove('py-3');
-                    headerLogo.classList.remove('w-[150px]', 'sm:w-[180px]', 'lg:w-[240px]');
-                    headerLogo.classList.add('w-[180px]', 'sm:w-[220px]', 'lg:w-[340px]');
+            // --- CARROSSEL DE IMAGENS ---
+            try {
+                const bgContainer = document.getElementById('hero-bg-container');
+                if (bgContainer) {
+                    const images = [
+                        'carrossel/1.jpg',
+                        'carrossel/2.jpg',
+                        'carrossel/3.jpg',
+                        'carrossel/4.jpg',
+                        'carrossel/5.jpg'
+                    ];
+
+                    images.forEach((imgUrl, index) => {
+                        const div = document.createElement('div');
+                        div.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
+                        // Removidas aspas simples dentro do url() para evitar conflitos no GitHub Pages
+                        div.style.backgroundImage = `url(${imgUrl})`; 
+                        bgContainer.appendChild(div);
+                    });
+
+                    let currentSlide = 0;
+                    const slides = bgContainer.querySelectorAll('.carousel-slide');
+                    
+                    if (slides.length > 0) {
+                        setInterval(() => {
+                            slides[currentSlide].classList.remove('active');
+                            currentSlide = (currentSlide + 1) % slides.length;
+                            slides[currentSlide].classList.add('active');
+                        }, 6000);
+                    }
                 }
-            });
+            } catch (err) {
+                console.error("Erro ao carregar imagens do carrossel:", err);
+            }
 
+            // --- SETA DE DIRECIONAMENTO ---
             const scrollDownBtn = document.getElementById('scrollDownBtn');
             if (scrollDownBtn) {
                 scrollDownBtn.addEventListener('click', () => {
@@ -443,24 +498,75 @@
                 });
             }
 
+            // --- CARROSSEL DE AVALIAÇÕES ---
+            try {
+                const reviewsTrack = document.getElementById('reviews-track');
+                const prevReviewBtn = document.getElementById('prev-review');
+                const nextReviewBtn = document.getElementById('next-review');
+
+                if (reviewsTrack && prevReviewBtn && nextReviewBtn) {
+                    const scrollAmount = 350;
+                    let autoScrollInterval;
+
+                    const startAutoScroll = () => {
+                        autoScrollInterval = setInterval(() => {
+                            if (reviewsTrack.scrollLeft + reviewsTrack.clientWidth >= reviewsTrack.scrollWidth - 10) {
+                                reviewsTrack.scrollTo({ left: 0, behavior: 'smooth' });
+                            } else {
+                                reviewsTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                            }
+                        }, 4000);
+                    };
+
+                    const stopAutoScroll = () => clearInterval(autoScrollInterval);
+
+                    prevReviewBtn.addEventListener('click', () => {
+                        reviewsTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                        stopAutoScroll(); startAutoScroll();
+                    });
+
+                    nextReviewBtn.addEventListener('click', () => {
+                        if (reviewsTrack.scrollLeft + reviewsTrack.clientWidth >= reviewsTrack.scrollWidth - 10) {
+                            reviewsTrack.scrollTo({ left: 0, behavior: 'smooth' });
+                        } else {
+                            reviewsTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                        }
+                        stopAutoScroll(); startAutoScroll();
+                    });
+
+                    reviewsTrack.addEventListener('mouseenter', stopAutoScroll);
+                    reviewsTrack.addEventListener('mouseleave', startAutoScroll);
+                    reviewsTrack.addEventListener('touchstart', stopAutoScroll, {passive: true});
+                    reviewsTrack.addEventListener('touchend', startAutoScroll, {passive: true});
+
+                    startAutoScroll();
+                }
+            } catch (err) {
+                console.error("Erro nas avaliações:", err);
+            }
+
+            // --- LIGHTBOX DA GALERIA ---
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
-            document.querySelectorAll('.gallery-img').forEach(img => {
-                img.addEventListener('click', () => {
-                    lightboxImg.src = img.src;
-                    lightbox.classList.remove('hidden');
-                    setTimeout(() => {
-                        lightbox.classList.add('opacity-100');
-                        lightboxImg.classList.add('scale-100');
-                    }, 10);
+            if (lightbox && lightboxImg) {
+                document.querySelectorAll('.gallery-img').forEach(img => {
+                    img.addEventListener('click', () => {
+                        lightboxImg.src = img.src;
+                        lightbox.classList.remove('hidden');
+                        setTimeout(() => {
+                            lightbox.classList.add('opacity-100');
+                            lightboxImg.classList.add('scale-100');
+                        }, 10);
+                    });
                 });
-            });
-            lightbox.addEventListener('click', () => {
-                lightbox.classList.remove('opacity-100');
-                lightboxImg.classList.remove('scale-100');
-                setTimeout(() => lightbox.classList.add('hidden'), 300);
-            });
+                lightbox.addEventListener('click', () => {
+                    lightbox.classList.remove('opacity-100');
+                    lightboxImg.classList.remove('scale-100');
+                    setTimeout(() => lightbox.classList.add('hidden'), 300);
+                });
+            }
 
+            // --- PROTEÇÕES DO SITE ---
             document.addEventListener('contextmenu', e => e.preventDefault());
             document.addEventListener('keydown', e => {
                 if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) || (e.ctrlKey && ['U', 'S'].includes(e.key.toUpperCase()))) {
