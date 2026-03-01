@@ -230,7 +230,7 @@
             </div>
             
             <div id="servicos-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
-                <div class="group bg-darkCard border border-zinc-800 p-8 rounded-3xl hover:border-primary transition duration-500 relative overflow-hidden">
+                <div class="group bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl hover:border-primary transition duration-500 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-0"></div>
                     <div class="w-16 h-16 lg:w-20 lg:h-20 bg-zinc-900 rounded-2xl flex items-center justify-center text-primary text-3xl lg:text-4xl mb-8 group-hover:scale-110 transition relative z-10 border border-zinc-800 group-hover:border-primary/50">
                         <i class="fa-solid fa-spray-can"></i>
@@ -239,7 +239,7 @@
                     <p class="text-sm lg:text-base text-textGray leading-relaxed relative z-10">Pintura automotiva completa e retoques rápidos para remover riscos e arranhões.</p>
                 </div>
 
-                <div class="group bg-darkCard border border-zinc-800 p-8 rounded-3xl hover:border-primary transition duration-500 relative overflow-hidden">
+                <div class="group bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl hover:border-primary transition duration-500 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-0"></div>
                     <div class="w-16 h-16 lg:w-20 lg:h-20 bg-zinc-900 rounded-2xl flex items-center justify-center text-primary text-3xl lg:text-4xl mb-8 group-hover:scale-110 transition relative z-10 border border-zinc-800 group-hover:border-primary/50">
                         <i class="fa-solid fa-car-burst"></i>
@@ -248,7 +248,7 @@
                     <p class="text-sm lg:text-base text-textGray leading-relaxed relative z-10">Restauramos trincas, quebras e deformações em para-choques plásticos.</p>
                 </div>
 
-                <div class="group bg-darkCard border border-zinc-800 p-8 rounded-3xl hover:border-primary transition duration-500 relative overflow-hidden">
+                <div class="group bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl hover:border-primary transition duration-500 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-0"></div>
                     <div class="w-16 h-16 lg:w-20 lg:h-20 bg-zinc-900 rounded-2xl flex items-center justify-center text-primary text-3xl lg:text-4xl mb-8 group-hover:scale-110 transition relative z-10 border border-zinc-800 group-hover:border-primary/50">
                         <i class="fa-solid fa-hammer"></i>
@@ -257,7 +257,7 @@
                     <p class="text-sm lg:text-base text-textGray leading-relaxed relative z-10">Reparos de lataria contra amassados e pequenas colisões. Alinhamento preciso.</p>
                 </div>
 
-                <div class="group bg-darkCard border border-zinc-800 p-8 rounded-3xl hover:border-primary transition duration-500 relative overflow-hidden">
+                <div class="group bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl hover:border-primary transition duration-500 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-0"></div>
                     <div class="w-16 h-16 lg:w-20 lg:h-20 bg-zinc-900 rounded-2xl flex items-center justify-center text-primary text-3xl lg:text-4xl mb-8 group-hover:scale-110 transition relative z-10 border border-zinc-800 group-hover:border-primary/50">
                         <i class="fa-solid fa-lightbulb"></i>
@@ -344,7 +344,7 @@
         </div>
     </section>
 
-    <!-- Avaliações Google -->
+    <!-- Avaliações Google (Ajustado para max-w-7xl e Avaliações Reais) -->
     <section id="avaliacoes" class="py-24 bg-darkBg border-b border-zinc-900 overflow-hidden">
         <div class="container mx-auto px-6">
             <div class="flex flex-col items-center mb-12">
@@ -355,97 +355,120 @@
                 <p class="text-zinc-400 text-center max-w-xl text-base lg:text-lg">O que nossos clientes dizem sobre o nosso trabalho.</p>
             </div>
 
-            <div class="relative max-w-6xl mx-auto px-8 md:px-12">
+            <div class="relative max-w-7xl mx-auto px-8 md:px-12">
                 <button id="prev-review" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-zinc-800 text-white w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center hover:bg-primary transition shadow-lg border border-zinc-700"><i class="fa-solid fa-chevron-left text-lg"></i></button>
                 <button id="next-review" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-zinc-800 text-white w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center hover:bg-primary transition shadow-lg border border-zinc-700"><i class="fa-solid fa-chevron-right text-lg"></i></button>
 
-                <!-- Largura adaptativa (85vw) para mobile evita cortes -->
                 <div id="reviews-track" class="flex gap-6 lg:gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar py-8 items-stretch">
                     
+                    <!-- João Carlos -->
                     <div class="w-[85vw] sm:w-[360px] md:w-[420px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl flex flex-col justify-between h-auto shadow-lg">
                         <div class="flex flex-col h-full">
                             <div class="flex justify-between items-start mb-6">
                                 <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-blue-600 flex items-center justify-center font-bold text-white text-sm lg:text-base shrink-0">RM</div>
+                                    <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-blue-600 flex items-center justify-center font-bold text-white text-sm lg:text-base shrink-0">JC</div>
                                     <div>
-                                        <h4 class="font-bold text-white text-sm lg:text-base leading-tight">Rafael Mendes</h4>
-                                        <div class="text-xs lg:text-sm text-zinc-500 mt-1">Há 1 mês</div>
+                                        <h4 class="font-bold text-white text-sm lg:text-base leading-tight">João Carlos Soledade Silva</h4>
+                                        <div class="text-xs lg:text-sm text-zinc-500 mt-1">Há 3 semanas</div>
                                     </div>
                                 </div>
                                 <i class="fa-brands fa-google text-blue-500 opacity-50 text-xl lg:text-2xl"></i>
                             </div>
                             <div class="flex text-yellow-400 mb-4 text-sm lg:text-base"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p class="text-zinc-300 text-sm lg:text-base leading-relaxed mb-2 grow">"Ótimo atendimento e serviço de primeira. Deixei meu carro para arrumar o para-choque e polir os faróis, ficou parecendo novo. Recomendo muito!"</p>
+                            <p class="text-zinc-300 text-sm lg:text-base leading-relaxed mb-2 grow">"Excelente trabalho de pintura que fizeram no meu carro. Meu carro saiu dela novo novamente. Recomendo vc levar seu carro na funilaria ferreira custom."</p>
                         </div>
                     </div>
 
+                    <!-- Cassia Nishida -->
                     <div class="w-[85vw] sm:w-[360px] md:w-[420px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl flex flex-col justify-between h-auto shadow-lg">
                         <div class="flex flex-col h-full">
                             <div class="flex justify-between items-start mb-6">
                                 <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-red-600 flex items-center justify-center font-bold text-white text-sm lg:text-base shrink-0">CS</div>
+                                    <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-pink-600 flex items-center justify-center font-bold text-white text-sm lg:text-base shrink-0">CN</div>
                                     <div>
-                                        <h4 class="font-bold text-white text-sm lg:text-base leading-tight">Carlos Santos</h4>
-                                        <div class="text-xs lg:text-sm text-zinc-500 mt-1">Há 2 meses</div>
-                                    </div>
-                                </div>
-                                <i class="fa-brands fa-google text-blue-500 opacity-50 text-xl lg:text-2xl"></i>
-                            </div>
-                            <div class="flex text-yellow-400 mb-4 text-sm lg:text-base"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p class="text-zinc-300 text-sm lg:text-base leading-relaxed mb-2 grow">"Trabalho muito rápido e com preço justo. A pintura do capô ficou com a cor exata, não dá para notar diferença nenhuma."</p>
-                        </div>
-                    </div>
-
-                    <div class="w-[85vw] sm:w-[360px] md:w-[420px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl flex flex-col justify-between h-auto shadow-lg">
-                        <div class="flex flex-col h-full">
-                            <div class="flex justify-between items-start mb-6">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-green-600 flex items-center justify-center font-bold text-white text-sm lg:text-base shrink-0">LM</div>
-                                    <div>
-                                        <h4 class="font-bold text-white text-sm lg:text-base leading-tight">Luciana Martins</h4>
-                                        <div class="text-xs lg:text-sm text-zinc-500 mt-1">Há 3 meses</div>
-                                    </div>
-                                </div>
-                                <i class="fa-brands fa-google text-blue-500 opacity-50 text-xl lg:text-2xl"></i>
-                            </div>
-                            <div class="flex text-yellow-400 mb-4 text-sm lg:text-base"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p class="text-zinc-300 text-sm lg:text-base leading-relaxed mb-2 grow">"Atendimento excepcional do início ao fim. Profissionais atenciosos e um acabamento impecável na lataria do meu carro."</p>
-                        </div>
-                    </div>
-
-                    <div class="w-[85vw] sm:w-[360px] md:w-[420px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl flex flex-col justify-between h-auto shadow-lg">
-                        <div class="flex flex-col h-full">
-                            <div class="flex justify-between items-start mb-6">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-purple-600 flex items-center justify-center font-bold text-white text-sm lg:text-base shrink-0">JP</div>
-                                    <div>
-                                        <h4 class="font-bold text-white text-sm lg:text-base leading-tight">João Pereira</h4>
+                                        <h4 class="font-bold text-white text-sm lg:text-base leading-tight">Cassia Nishida</h4>
                                         <div class="text-xs lg:text-sm text-zinc-500 mt-1">Há 4 meses</div>
                                     </div>
                                 </div>
                                 <i class="fa-brands fa-google text-blue-500 opacity-50 text-xl lg:text-2xl"></i>
                             </div>
                             <div class="flex text-yellow-400 mb-4 text-sm lg:text-base"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p class="text-zinc-300 text-sm lg:text-base leading-relaxed mb-2 grow">"Levei para um retoque na porta depois de uma batida no estacionamento. O serviço foi ágil e a qualidade me surpreendeu."</p>
+                            <p class="text-zinc-300 text-sm lg:text-base leading-relaxed mb-2 grow">"Desde o primeiro contato fui muito bem atendida, com atenção e transparência. O resultado do trabalho ficou excelente e o preço justo! Muito bom! Recomendo!"</p>
                         </div>
                     </div>
 
+                    <!-- Felipe Henrique -->
                     <div class="w-[85vw] sm:w-[360px] md:w-[420px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl flex flex-col justify-between h-auto shadow-lg">
                         <div class="flex flex-col h-full">
                             <div class="flex justify-between items-start mb-6">
                                 <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-orange-500 flex items-center justify-center font-bold text-white text-sm lg:text-base shrink-0">AP</div>
+                                    <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-green-600 flex items-center justify-center font-bold text-white text-sm lg:text-base shrink-0">FB</div>
                                     <div>
-                                        <h4 class="font-bold text-white text-sm lg:text-base leading-tight">Ana Paula</h4>
-                                        <div class="text-xs lg:text-sm text-zinc-500 mt-1">Há 5 meses</div>
+                                        <h4 class="font-bold text-white text-sm lg:text-base leading-tight">Felipe Henrique Cruz Bizarria</h4>
+                                        <div class="text-xs lg:text-sm text-zinc-500 mt-1">Há 2 meses</div>
                                     </div>
                                 </div>
                                 <i class="fa-brands fa-google text-blue-500 opacity-50 text-xl lg:text-2xl"></i>
                             </div>
                             <div class="flex text-yellow-400 mb-4 text-sm lg:text-base"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <p class="text-zinc-300 text-sm lg:text-base leading-relaxed mb-2 grow">"Os faróis do meu carro estavam muito amarelados. O polimento que fizeram devolveu o brilho original. Excelente oficina em Piracicaba!"</p>
+                            <p class="text-zinc-300 text-sm lg:text-base leading-relaxed mb-2 grow">"Excelencia em todos os aspectos, foi rapido para entregar o serviço, otimo atendimento, são super prestativos e atenciosos, indiquei para todos os conhecidos, e também um preço justo."</p>
                         </div>
                     </div>
+
+                    <!-- Daniela Degasperi -->
+                    <div class="w-[85vw] sm:w-[360px] md:w-[420px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl flex flex-col justify-between h-auto shadow-lg">
+                        <div class="flex flex-col h-full">
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-purple-600 flex items-center justify-center font-bold text-white text-sm lg:text-base shrink-0">DF</div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm lg:text-base leading-tight">Daniela Degasperi Ferreira</h4>
+                                        <div class="text-xs lg:text-sm text-zinc-500 mt-1">Há 4 meses</div>
+                                    </div>
+                                </div>
+                                <i class="fa-brands fa-google text-blue-500 opacity-50 text-xl lg:text-2xl"></i>
+                            </div>
+                            <div class="flex text-yellow-400 mb-4 text-sm lg:text-base"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-zinc-300 text-sm lg:text-base leading-relaxed mb-2 grow">"Trabalho de excelência, resolução de problemas e dúvidas, prazo de entrega, atendimento espetacular, preço justo, enfim a melhor funilaria da cidade👏👏👏👏"</p>
+                        </div>
+                    </div>
+
+                    <!-- Luiz Boizinho -->
+                    <div class="w-[85vw] sm:w-[360px] md:w-[420px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl flex flex-col justify-between h-auto shadow-lg">
+                        <div class="flex flex-col h-full">
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-orange-600 flex items-center justify-center font-bold text-white text-sm lg:text-base shrink-0">LB</div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm lg:text-base leading-tight">Luiz Boizinho</h4>
+                                        <div class="text-xs lg:text-sm text-zinc-500 mt-1">Há 3 meses</div>
+                                    </div>
+                                </div>
+                                <i class="fa-brands fa-google text-blue-500 opacity-50 text-xl lg:text-2xl"></i>
+                            </div>
+                            <div class="flex text-yellow-400 mb-4 text-sm lg:text-base"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-zinc-300 text-sm lg:text-base leading-relaxed mb-2 grow">"Ficou excelente a pintura, bom trabalho e no prazo certo. Gratidão por nos escolher!"</p>
+                        </div>
+                    </div>
+
+                    <!-- Juliano Saturno -->
+                    <div class="w-[85vw] sm:w-[360px] md:w-[420px] shrink-0 snap-center bg-darkCard border border-zinc-800 p-6 lg:p-8 rounded-3xl flex flex-col justify-between h-auto shadow-lg">
+                        <div class="flex flex-col h-full">
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-red-600 flex items-center justify-center font-bold text-white text-sm lg:text-base shrink-0">JS</div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm lg:text-base leading-tight">Juliano Saturno</h4>
+                                        <div class="text-xs lg:text-sm text-zinc-500 mt-1">Há 4 meses</div>
+                                    </div>
+                                </div>
+                                <i class="fa-brands fa-google text-blue-500 opacity-50 text-xl lg:text-2xl"></i>
+                            </div>
+                            <div class="flex text-yellow-400 mb-4 text-sm lg:text-base"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-zinc-300 text-sm lg:text-base leading-relaxed mb-2 grow">"Ótimo atendimento, ótimo trabalho. Recomendo com certeza."</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="mt-10 lg:mt-14 text-center">
@@ -508,7 +531,6 @@
                 </div>
             </div>
 
-            <!-- Redes Sociais -->
             <div class="flex justify-center gap-12 text-zinc-600 text-5xl sm:text-6xl mt-8 mb-4">
                 <a href="https://www.instagram.com/ferreiracustom.oficial/" target="_blank" class="hover:text-[#E1306C] transition-all transform hover:scale-110 drop-shadow-md"><i class="fa-brands fa-instagram"></i></a>
                 <a href="#" target="_blank" class="hover:text-[#1877F2] transition-all transform hover:scale-110 drop-shadow-md"><i class="fa-brands fa-facebook"></i></a>
