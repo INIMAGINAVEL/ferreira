@@ -126,7 +126,6 @@
             transition: opacity 0.5s ease;
         }
 
-        /* Classe ativada por JS - Fundo Escuro Premium com Blur */
         #main-header.scrolled {
             background-color: rgba(12, 12, 12, 0.85); 
             backdrop-filter: blur(16px);
@@ -139,6 +138,19 @@
             opacity: 1;
             pointer-events: auto;
         }
+
+        /* Efeito Neon Ativo para os Menus */
+        .desktop-nav-link {
+            transition: text-shadow 0.5s ease, color 0.5s ease;
+        }
+        .neon-active {
+            color: #ffffff !important;
+            text-shadow: 0 0 12px rgba(47, 73, 159, 0.8);
+        }
+        .neon-active .nav-line {
+            width: 100% !important;
+            opacity: 1 !important;
+        }
     </style>
 </head>
 <body class="font-sans antialiased overflow-x-hidden relative">
@@ -150,13 +162,13 @@
             
             <div class="hidden lg:flex items-center gap-10 xl:gap-14">
                 <nav class="reveal-on-scroll flex gap-10 xl:gap-14 text-[16px] font-bold text-white/90 uppercase tracking-[0.12em]">
-                    <a href="#servicos" class="desktop-nav-link hover:text-primary transition-colors py-2 relative group">Serviços
-                        <span class="absolute -bottom-2 left-0 w-0 h-[3px] bg-primary/30 transition-all duration-300 group-hover:w-full"></span>
-                        <span class="scroll-progress absolute -bottom-2 left-0 h-[3px] bg-primary shadow-[0_0_8px_rgba(47,73,159,0.8)]" style="width: 0%;"></span>
+                    <!-- Link Serviços com Nav Line -->
+                    <a href="#servicos" id="nav-servicos" class="desktop-nav-link py-2 relative group">Serviços
+                        <span class="nav-line absolute -bottom-2 left-0 w-0 h-[3px] bg-primary shadow-[0_0_10px_rgba(47,73,159,0.9)] transition-all duration-500 ease-in-out opacity-0 group-hover:w-full group-hover:opacity-40"></span>
                     </a>
-                    <a href="#galeria" class="desktop-nav-link hover:text-primary transition-colors py-2 relative group">Trabalhos
-                        <span class="absolute -bottom-2 left-0 w-0 h-[3px] bg-primary/30 transition-all duration-300 group-hover:w-full"></span>
-                        <span class="scroll-progress absolute -bottom-2 left-0 h-[3px] bg-primary shadow-[0_0_8px_rgba(47,73,159,0.8)]" style="width: 0%;"></span>
+                    <!-- Link Trabalhos com Nav Line -->
+                    <a href="#galeria" id="nav-galeria" class="desktop-nav-link py-2 relative group">Trabalhos
+                        <span class="nav-line absolute -bottom-2 left-0 w-0 h-[3px] bg-primary shadow-[0_0_10px_rgba(47,73,159,0.9)] transition-all duration-500 ease-in-out opacity-0 group-hover:w-full group-hover:opacity-40"></span>
                     </a>
                 </nav>
             </div>
@@ -170,9 +182,9 @@
 
             <div class="flex items-center gap-6 xl:gap-10">
                 <nav class="reveal-on-scroll hidden lg:flex text-[16px] font-bold text-white/90 uppercase tracking-[0.12em]">
-                    <a href="#localizacao" class="desktop-nav-link hover:text-primary transition-colors py-2 relative group">Localização
-                        <span class="absolute -bottom-2 left-0 w-0 h-[3px] bg-primary/30 transition-all duration-300 group-hover:w-full"></span>
-                        <span class="scroll-progress absolute -bottom-2 left-0 h-[3px] bg-primary shadow-[0_0_8px_rgba(47,73,159,0.8)]" style="width: 0%;"></span>
+                    <!-- Link Localização com Nav Line -->
+                    <a href="#localizacao" id="nav-loc" class="desktop-nav-link py-2 relative group">Localização
+                        <span class="nav-line absolute -bottom-2 left-0 w-0 h-[3px] bg-primary shadow-[0_0_10px_rgba(47,73,159,0.9)] transition-all duration-500 ease-in-out opacity-0 group-hover:w-full group-hover:opacity-40"></span>
                     </a>
                 </nav>
                 
@@ -295,14 +307,16 @@
             <div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-8">
                 <div class="text-center md:text-left">
                     <h2 class="font-brand text-3xl md:text-4xl lg:text-5xl mb-4">Trabalhos <span class="text-primary">Recentes</span></h2>
-                    <p class="text-zinc-500 text-base lg:text-lg">Confira a qualidade do nosso acabamento.</p>
+                    <!-- ID Adicionado para o trigger de desligar Serviços -->
+                    <p id="trabalhos-subtitle" class="text-zinc-500 text-base lg:text-lg">Confira a qualidade do nosso acabamento.</p>
                 </div>
                 <a href="https://www.instagram.com/ferreiracustom.oficial/" target="_blank" class="bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white font-bold tracking-widest text-sm md:text-base lg:text-lg px-8 lg:px-10 py-4 lg:py-5 rounded-full transition flex items-center gap-3 shadow-[0_0_20px_rgba(220,39,67,0.3)] hover:shadow-[0_0_30px_rgba(220,39,67,0.5)] transform hover:scale-105">
                     <i class="fa-brands fa-instagram text-3xl lg:text-4xl"></i> @FERREIRACUSTOM.OFICIAL
                 </a>
             </div>
             
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            <!-- ID Adicionado para o trigger de ligar Trabalhos -->
+            <div id="galeria-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                 <div class="overflow-hidden rounded-xl aspect-square bg-zinc-900 shadow-md">
                     <img src="galeria/1.jpg" alt="Serviço 1" class="gallery-img w-full h-full object-cover cursor-pointer hover:scale-110 transition duration-700" onerror="this.src='https://via.placeholder.com/600/111/FFF?text=Foto+1'">
                 </div>
@@ -447,19 +461,20 @@
                 </div>
             </div>
             <div class="mt-10 lg:mt-14 text-center">
-                <a href="https://www.google.com/search?q=ferreira+custom&ie=UTF-8#lrd=0x94c63367c69ebfd5:0x8ffe4d96acb48e65,1,,,," target="_blank" class="inline-flex items-center gap-3 bg-white text-black px-8 lg:px-10 py-3 lg:py-4 rounded font-bold hover:bg-gray-200 transition shadow-lg text-sm lg:text-lg">
+                <!-- ID Adicionado para o trigger de desligar Trabalhos -->
+                <a id="btn-avaliacoes" href="https://www.google.com/search?q=ferreira+custom&ie=UTF-8#lrd=0x94c63367c69ebfd5:0x8ffe4d96acb48e65,1,,,," target="_blank" class="inline-flex items-center gap-3 bg-white text-black px-8 lg:px-10 py-3 lg:py-4 rounded font-bold hover:bg-gray-200 transition shadow-lg text-sm lg:text-lg">
                     Ver mais avaliações <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Localização (Ajustada: menor e colada com o rodapé) -->
+    <!-- Localização -->
     <section id="localizacao" class="pt-24 pb-8 bg-[#0a0a0a]">
         <div class="container mx-auto px-6">
             
-            <!-- Box Principal -->
-            <div class="flex flex-col lg:flex-row gap-8 items-stretch bg-darkCard border border-zinc-800 rounded-3xl overflow-hidden mb-10 shadow-2xl">
+            <!-- Box Principal (ID Adicionado para o trigger de ligar Localização) -->
+            <div id="loc-box" class="flex flex-col lg:flex-row gap-8 items-stretch bg-darkCard border border-zinc-800 rounded-3xl overflow-hidden mb-10 shadow-2xl">
                 
                 <div class="lg:w-1/2 p-8 md:p-12 flex flex-col justify-between">
                     <div>
@@ -517,10 +532,7 @@
                 <a href="#" target="_blank" class="hover:text-white transition-all transform hover:scale-110 drop-shadow-md"><i class="fa-brands fa-tiktok"></i></a>
             </div>
 
-        </div>
-    </section>
-
-    <!-- Footer (Aproximado da secção superior) -->
+    <!-- Footer -->
     <footer id="footer" class="bg-black pt-12 pb-16 border-t border-zinc-900 relative z-50">
         <div class="container mx-auto px-6 flex flex-col items-center">
             <div class="mb-10 w-full flex justify-center">
@@ -533,7 +545,10 @@
                 © 2026 Ferreira Custom. Todos os direitos reservados.<br>
                 Av. Brasília, 2399 - Vila Industrial, Piracicaba - SP
             </p>
-            <p class="text-[13px] text-zinc-700 mt-6 text-center tracking-wider">
+            
+            <!-- Linha Divisória e ID Adicionado para o trigger de desligar Localização -->
+            <div class="w-16 h-px bg-zinc-800 my-6"></div>
+            <p id="footer-line" class="text-[13px] text-zinc-700 text-center tracking-wider">
                 Desenvolvido por <strong class="text-zinc-500">Arnaldo Amaro</strong>
             </p>
         </div>
@@ -597,44 +612,50 @@
                 });
             }
 
-            // --- INDICADOR DE PROGRESSO DE SCROLL NOS MENUS ---
-            const desktopNavLinks = document.querySelectorAll('.desktop-nav-link');
-            if (desktopNavLinks.length > 0) {
-                const sectionsOrder = ['servicos', 'galeria', 'localizacao'];
-                
+            // --- INDICADOR NEON (SCROLL SPY PRECISO) ---
+            const navServicos = document.getElementById('nav-servicos');
+            const navGaleria = document.getElementById('nav-galeria');
+            const navLoc = document.getElementById('nav-loc');
+
+            const servicosSec = document.getElementById('servicos');
+            const trabalhosSub = document.getElementById('trabalhos-subtitle');
+            const galeriaGrid = document.getElementById('galeria-grid');
+            const btnAvaliacoes = document.getElementById('btn-avaliacoes');
+            const locBox = document.getElementById('loc-box');
+            const footerLine = document.getElementById('footer-line');
+
+            if (navServicos && navGaleria && navLoc) {
                 window.addEventListener('scroll', () => {
-                    const scrollY = window.scrollY;
-                    const headerOffset = 120; // Ajustado para a nova escala de tamanhos
-                    const documentHeight = document.body.offsetHeight;
-                    const isAtBottom = Math.ceil(window.innerHeight + scrollY) >= documentHeight - 50;
+                    // vBottom representa a linha inferior da sua janela do browser
+                    const vBottom = window.innerHeight;
+                    
+                    // Função auxiliar para evitar erros se a secção não carregar
+                    const getRect = (el) => el ? el.getBoundingClientRect() : { top: 99999, bottom: 99999 };
 
-                    desktopNavLinks.forEach(link => {
-                        const targetId = link.getAttribute('href').substring(1);
-                        const progressSpan = link.querySelector('.scroll-progress');
-                        
-                        if (progressSpan) {
-                            const currentSection = document.getElementById(targetId);
-                            const currentIndex = sectionsOrder.indexOf(targetId);
-                            const nextSectionId = sectionsOrder[currentIndex + 1];
-                            const nextSection = nextSectionId ? document.getElementById(nextSectionId) : null;
+                    // 1. SERVIÇOS: Acende quando a parte inferior do browser passa o topo de Serviços 
+                    // e apaga ao chegar no final da linha 'confira a qualidade...'
+                    const isServicos = getRect(servicosSec).top <= vBottom && getRect(trabalhosSub).bottom > vBottom;
 
-                            if (currentSection) {
-                                const start = currentSection.offsetTop - headerOffset;
-                                const end = nextSection ? (nextSection.offsetTop - headerOffset) : documentHeight;
-                                const totalDistance = end - start;
-                                
-                                let progress = 0;
+                    // 2. TRABALHOS: Acende quando a primeira fileira de carros entra um pouco (100px)
+                    // e apaga ao chegar no botão 'ver mais avaliações'
+                    const isTrabalhos = getRect(galeriaGrid).top + 100 <= vBottom && getRect(btnAvaliacoes).bottom > vBottom;
 
-                                if (isAtBottom) {
-                                    progress = (targetId === 'localizacao') ? 100 : 0;
-                                } else if (scrollY >= start && scrollY < end) {
-                                    progress = ((scrollY - start) / totalDistance) * 100;
-                                }
+                    // 3. LOCALIZAÇÃO: Acende ao chegar no final da box principal de endereço/mapa
+                    // e apaga ao descer até à linha divisória do 'desenvolvido por'
+                    const isLoc = getRect(locBox).bottom <= vBottom && getRect(footerLine).top > vBottom;
 
-                                progressSpan.style.width = Math.max(0, Math.min(100, progress)) + '%';
-                            }
+                    // Aplica a classe 'neon-active' dependendo do estado
+                    const toggleNeon = (element, isActive) => {
+                        if (isActive) {
+                            element.classList.add('neon-active');
+                        } else {
+                            element.classList.remove('neon-active');
                         }
-                    });
+                    };
+
+                    toggleNeon(navServicos, isServicos);
+                    toggleNeon(navGaleria, isTrabalhos);
+                    toggleNeon(navLoc, isLoc);
                 });
             }
 
