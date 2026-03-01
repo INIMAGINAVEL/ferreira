@@ -135,27 +135,27 @@
     <!-- Cabeçalho (Header) FIXO E DINÂMICO -->
     <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b">
         
-        <!-- O py-6 dá mais altura inicial, e a classe py-4 no scroll mantém a barra confortável -->
-        <div id="header-container" class="px-4 flex justify-between items-start relative z-20 container mx-auto transition-all duration-500 py-6">
+        <!-- Mudei items-start para items-center para garantir o alinhamento vertical perfeito com o logo -->
+        <div id="header-container" class="px-4 flex justify-between items-center relative z-20 container mx-auto transition-all duration-500 py-6">
             
-            <!-- Esquerda (Navegação Desktop - Oculta inicialmente, empurrada um pouco para baixo com pt-3 para alinhar visualmente) -->
-            <div class="flex-1 flex justify-start items-center pt-2 lg:pt-4">
+            <!-- Esquerda (Navegação Desktop - Oculta inicialmente) -->
+            <div class="flex-1 flex justify-start items-center">
                 <nav class="reveal-on-scroll hidden lg:flex gap-8 text-sm font-semibold text-white uppercase tracking-widest">
                     <a href="#servicos" class="hover:text-primary transition">Serviços</a>
                     <a href="#galeria" class="hover:text-primary transition">Trabalhos</a>
                 </nav>
             </div>
 
-            <!-- Centro (Logo com Névoa Branca e transição de tamanho fluida) -->
+            <!-- Centro (Logo com Névoa Branca e transição de tamanho fluida - Tamanhos mobile aumentados) -->
             <a href="#home" class="relative flex justify-center items-center flex-shrink-0 z-30 mx-2 group">
                 <!-- Efeito de Névoa -->
                 <div class="absolute inset-0 bg-white/20 blur-2xl rounded-full scale-[1.3] opacity-80 pointer-events-none group-hover:opacity-100 transition-opacity"></div>
                 <!-- Imagem do Logo com ID para o JS alterar o tamanho -->
-                <img id="header-logo" src="logo2.png" alt="Ferreira Custom Logo" class="relative w-[150px] md:w-[280px] lg:w-[380px] object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.5)] transition-all duration-500 ease-in-out hover:scale-105">
+                <img id="header-logo" src="logo2.png" alt="Ferreira Custom Logo" class="relative w-[220px] sm:w-[280px] lg:w-[380px] object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.5)] transition-all duration-500 ease-in-out hover:scale-105">
             </a>
 
-            <!-- Direita (Navegação Desktop Oculta & Botão WhatsApp Sempre Visível, também alinhados para baixo com pt) -->
-            <div class="flex-1 flex justify-end items-center gap-4 lg:gap-8 pt-2 lg:pt-2">
+            <!-- Direita (Navegação Desktop Oculta & Botão WhatsApp Sempre Visível) -->
+            <div class="flex-1 flex justify-end items-center gap-4 lg:gap-8">
                 <!-- Links Desktop (Ocultos inicialmente) -->
                 <nav class="reveal-on-scroll hidden lg:flex gap-8 text-sm font-semibold text-white uppercase tracking-widest items-center">
                     <a href="#avaliacoes" class="hover:text-primary transition">Avaliações</a>
@@ -637,9 +637,9 @@
                     headerContainer.classList.remove('py-6');
                     headerContainer.classList.add('py-4'); 
                     
-                    // Logo diminui para não ocupar espaço a mais na leitura
-                    headerLogo.classList.remove('w-[150px]', 'md:w-[280px]', 'lg:w-[380px]');
-                    headerLogo.classList.add('w-[110px]', 'md:w-[180px]', 'lg:w-[240px]');
+                    // Logo diminui para não ocupar espaço a mais na leitura (Ajustado para não ficar muito pequeno no mobile)
+                    headerLogo.classList.remove('w-[220px]', 'sm:w-[280px]', 'lg:w-[380px]');
+                    headerLogo.classList.add('w-[160px]', 'sm:w-[200px]', 'lg:w-[260px]');
                 } else {
                     // Topo da página: Header invisível e espaçoso
                     header.classList.remove('scrolled');
@@ -647,8 +647,8 @@
                     headerContainer.classList.remove('py-4');
 
                     // Logo aumenta de tamanho para dar impacto
-                    headerLogo.classList.remove('w-[110px]', 'md:w-[180px]', 'lg:w-[240px]');
-                    headerLogo.classList.add('w-[150px]', 'md:w-[280px]', 'lg:w-[380px]');
+                    headerLogo.classList.remove('w-[160px]', 'sm:w-[200px]', 'lg:w-[260px]');
+                    headerLogo.classList.add('w-[220px]', 'sm:w-[280px]', 'lg:w-[380px]');
                 }
             });
 
