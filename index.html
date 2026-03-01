@@ -44,7 +44,7 @@
     <style>
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 120px; 
+            scroll-padding-top: 100px; 
         }
         body {
             background-color: #0d0d0d;
@@ -105,7 +105,7 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* Efeitos do Cabeçalho Dinâmico */
+        /* Efeitos do Cabeçalho Dinâmico Premium */
         #main-header {
             background-color: transparent;
             border-bottom-color: transparent;
@@ -117,11 +117,13 @@
             transition: opacity 0.5s ease;
         }
 
-        /* Classe ativada por JS (Cinza Chumbo leve com blur) */
+        /* Classe ativada por JS - Fundo Escuro Premium com Blur */
         #main-header.scrolled {
-            background-color: rgba(45, 45, 48, 0.95); 
-            backdrop-filter: blur(8px);
+            background-color: rgba(12, 12, 12, 0.85); 
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom-color: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
         }
         
         #main-header.scrolled .reveal-on-scroll {
@@ -135,41 +137,48 @@
     <!-- Cabeçalho (Header) FIXO E DINÂMICO -->
     <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b">
         
-        <!-- Mudei items-start para items-center para garantir o alinhamento vertical perfeito com o logo -->
-        <div id="header-container" class="px-4 flex justify-between items-center relative z-20 container mx-auto transition-all duration-500 py-6">
+        <!-- CSS Grid (lg:grid-cols-3) para garantir que o logo fica no centro matemático e os menus abraçam-no -->
+        <div id="header-container" class="px-4 sm:px-6 flex justify-between lg:grid lg:grid-cols-3 items-center relative z-20 container mx-auto transition-all duration-500 py-6 gap-2">
             
-            <!-- Esquerda (Navegação Desktop - Oculta inicialmente) -->
-            <div class="flex-1 flex justify-start items-center">
-                <nav class="reveal-on-scroll hidden lg:flex gap-8 text-sm font-semibold text-white uppercase tracking-widest">
-                    <a href="#servicos" class="hover:text-primary transition">Serviços</a>
-                    <a href="#galeria" class="hover:text-primary transition">Trabalhos</a>
+            <!-- Esquerda (Navegação Desktop - Encostada à direita do seu espaço) -->
+            <div class="hidden lg:flex justify-end items-center pr-6 xl:pr-12 w-full">
+                <nav class="reveal-on-scroll flex gap-8 xl:gap-12 text-[13px] font-bold text-white/90 uppercase tracking-[0.15em]">
+                    <a href="#servicos" class="hover:text-primary transition-colors py-2 relative group">Serviços
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#galeria" class="hover:text-primary transition-colors py-2 relative group">Trabalhos
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
                 </nav>
             </div>
 
-            <!-- Centro (Logo com Névoa Branca e transição de tamanho fluida - Tamanhos mobile aumentados) -->
-            <a href="#home" class="relative flex justify-center items-center flex-shrink-0 z-30 mx-2 group">
-                <!-- Efeito de Névoa -->
-                <div class="absolute inset-0 bg-white/20 blur-2xl rounded-full scale-[1.3] opacity-80 pointer-events-none group-hover:opacity-100 transition-opacity"></div>
-                <!-- Imagem do Logo com ID para o JS alterar o tamanho -->
-                <img id="header-logo" src="logo2.png" alt="Ferreira Custom Logo" class="relative w-[220px] sm:w-[280px] lg:w-[380px] object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.5)] transition-all duration-500 ease-in-out hover:scale-105">
-            </a>
+            <!-- Centro (Logo com Névoa Branca e transição de tamanho fluida) -->
+            <div class="flex justify-start lg:justify-center items-center z-30 flex-shrink-0">
+                <a href="#home" class="relative flex justify-center items-center group">
+                    <!-- Efeito de Névoa -->
+                    <div class="absolute inset-0 bg-white/10 blur-xl rounded-full scale-[1.2] opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <!-- Imagem do Logo com ID para o JS alterar o tamanho -->
+                    <img id="header-logo" src="logo2.png" alt="Ferreira Custom Logo" class="relative w-[180px] sm:w-[220px] lg:w-[340px] object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.15)] transition-all duration-500 ease-in-out hover:scale-105 origin-left lg:origin-center">
+                </a>
+            </div>
 
-            <!-- Direita (Navegação Desktop Oculta & Botão WhatsApp Sempre Visível) -->
-            <div class="flex-1 flex justify-end items-center gap-4 lg:gap-8">
-                <!-- Links Desktop (Ocultos inicialmente) -->
-                <nav class="reveal-on-scroll hidden lg:flex gap-8 text-sm font-semibold text-white uppercase tracking-widest items-center">
-                    <a href="#avaliacoes" class="hover:text-primary transition">Avaliações</a>
-                    <a href="#localizacao" class="hover:text-primary transition">Localização</a>
+            <!-- Direita (Navegação Desktop & Botão WhatsApp Encostados à esquerda do seu espaço) -->
+            <div class="flex justify-end lg:justify-start items-center lg:pl-6 xl:pl-12 w-full gap-4 xl:gap-8">
+                <!-- Links Desktop -->
+                <nav class="reveal-on-scroll hidden lg:flex text-[13px] font-bold text-white/90 uppercase tracking-[0.15em]">
+                    <a href="#localizacao" class="hover:text-primary transition-colors py-2 relative group">Localização
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
                 </nav>
                 
-                <!-- Botão WhatsApp Responsivo (Sempre Visível) -->
-                <a href="https://wa.me/5519990155383" target="_blank" class="flex items-center justify-center bg-brandGreen hover:bg-green-500 text-black font-bold transition shadow-lg shadow-brandGreen/20 w-11 h-11 rounded-full lg:w-auto lg:h-auto lg:rounded lg:py-2.5 lg:px-5 lg:gap-2">
-                    <i class="fa-brands fa-whatsapp text-[26px] lg:text-xl"></i>
-                    <span class="hidden lg:block text-sm uppercase tracking-widest">WhatsApp</span>
+                <!-- Botão WhatsApp Responsivo Premium (Pill Shape) -->
+                <a href="https://wa.me/5519990155383" target="_blank" class="flex items-center justify-center bg-brandGreen hover:bg-[#1ebe5d] text-black font-bold transition-all duration-300 shadow-[0_0_15px_rgba(37,211,102,0.2)] hover:shadow-[0_0_25px_rgba(37,211,102,0.4)] w-10 h-10 rounded-full lg:w-auto lg:h-auto lg:rounded-full lg:py-2 lg:px-6 lg:gap-2 hover:-translate-y-0.5">
+                    <i class="fa-brands fa-whatsapp text-[22px] lg:text-[20px]"></i>
+                    <span class="hidden lg:block text-xs uppercase tracking-[0.15em] mt-[1px]">WhatsApp</span>
                 </a>
                 
-                <!-- Botão Menu Mobile (Oculto inicialmente, aparece com o scroll) -->
-                <button id="mobile-menu-btn" class="reveal-on-scroll text-white text-3xl lg:hidden ml-2"><i class="fa-solid fa-bars-staggered"></i></button>
+                <!-- Botão Menu Mobile -->
+                <button id="mobile-menu-btn" class="reveal-on-scroll text-white text-2xl lg:hidden ml-2 hover:text-primary transition-colors"><i class="fa-solid fa-bars-staggered"></i></button>
             </div>
         </div>
 
@@ -178,7 +187,6 @@
             <a href="#home" class="mobile-link text-white font-semibold py-4 border-b border-zinc-900">Início</a>
             <a href="#servicos" class="mobile-link text-white font-semibold py-4 border-b border-zinc-900">Serviços</a>
             <a href="#galeria" class="mobile-link text-white font-semibold py-4 border-b border-zinc-900">Trabalhos</a>
-            <a href="#avaliacoes" class="mobile-link text-white font-semibold py-4 border-b border-zinc-900">Avaliações</a>
             <a href="#localizacao" class="mobile-link text-white font-semibold py-4 border-b border-zinc-900">Localização</a>
             <a href="https://wa.me/5519990155383" target="_blank" class="mobile-link text-brandGreen font-bold py-4 flex justify-center items-center gap-2"><i class="fa-brands fa-whatsapp text-xl"></i> Falar no WhatsApp</a>
         </nav>
@@ -635,20 +643,20 @@
                     // Header cinzento visível e mais enxuto
                     header.classList.add('scrolled');
                     headerContainer.classList.remove('py-6');
-                    headerContainer.classList.add('py-4'); 
+                    headerContainer.classList.add('py-3'); 
                     
                     // Logo diminui para não ocupar espaço a mais na leitura (Ajustado para não ficar muito pequeno no mobile)
-                    headerLogo.classList.remove('w-[220px]', 'sm:w-[280px]', 'lg:w-[380px]');
-                    headerLogo.classList.add('w-[160px]', 'sm:w-[200px]', 'lg:w-[260px]');
+                    headerLogo.classList.remove('w-[180px]', 'sm:w-[220px]', 'lg:w-[340px]');
+                    headerLogo.classList.add('w-[150px]', 'sm:w-[180px]', 'lg:w-[240px]');
                 } else {
                     // Topo da página: Header invisível e espaçoso
                     header.classList.remove('scrolled');
                     headerContainer.classList.add('py-6');
-                    headerContainer.classList.remove('py-4');
+                    headerContainer.classList.remove('py-3');
 
                     // Logo aumenta de tamanho para dar impacto
-                    headerLogo.classList.remove('w-[160px]', 'sm:w-[200px]', 'lg:w-[260px]');
-                    headerLogo.classList.add('w-[220px]', 'sm:w-[280px]', 'lg:w-[380px]');
+                    headerLogo.classList.remove('w-[150px]', 'sm:w-[180px]', 'lg:w-[240px]');
+                    headerLogo.classList.add('w-[180px]', 'sm:w-[220px]', 'lg:w-[340px]');
                 }
             });
 
