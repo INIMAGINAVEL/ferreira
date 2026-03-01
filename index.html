@@ -151,12 +151,12 @@
             <div class="hidden lg:flex items-center gap-10 xl:gap-14">
                 <nav class="reveal-on-scroll flex gap-10 xl:gap-14 text-[16px] font-bold text-white/90 uppercase tracking-[0.12em]">
                     <a href="#servicos" class="desktop-nav-link hover:text-primary transition-colors py-2 relative group">Serviços
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary/30 transition-all duration-300 group-hover:w-full"></span>
-                        <span class="scroll-progress absolute -bottom-1 left-0 h-0.5 bg-primary shadow-[0_0_8px_rgba(47,73,159,0.8)]" style="width: 0%;"></span>
+                        <span class="absolute -bottom-2 left-0 w-0 h-[3px] bg-primary/30 transition-all duration-300 group-hover:w-full"></span>
+                        <span class="scroll-progress absolute -bottom-2 left-0 h-[3px] bg-primary shadow-[0_0_8px_rgba(47,73,159,0.8)]" style="width: 0%;"></span>
                     </a>
                     <a href="#galeria" class="desktop-nav-link hover:text-primary transition-colors py-2 relative group">Trabalhos
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary/30 transition-all duration-300 group-hover:w-full"></span>
-                        <span class="scroll-progress absolute -bottom-1 left-0 h-0.5 bg-primary shadow-[0_0_8px_rgba(47,73,159,0.8)]" style="width: 0%;"></span>
+                        <span class="absolute -bottom-2 left-0 w-0 h-[3px] bg-primary/30 transition-all duration-300 group-hover:w-full"></span>
+                        <span class="scroll-progress absolute -bottom-2 left-0 h-[3px] bg-primary shadow-[0_0_8px_rgba(47,73,159,0.8)]" style="width: 0%;"></span>
                     </a>
                 </nav>
             </div>
@@ -171,8 +171,8 @@
             <div class="flex items-center gap-6 xl:gap-10">
                 <nav class="reveal-on-scroll hidden lg:flex text-[16px] font-bold text-white/90 uppercase tracking-[0.12em]">
                     <a href="#localizacao" class="desktop-nav-link hover:text-primary transition-colors py-2 relative group">Localização
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary/30 transition-all duration-300 group-hover:w-full"></span>
-                        <span class="scroll-progress absolute -bottom-1 left-0 h-0.5 bg-primary shadow-[0_0_8px_rgba(47,73,159,0.8)]" style="width: 0%;"></span>
+                        <span class="absolute -bottom-2 left-0 w-0 h-[3px] bg-primary/30 transition-all duration-300 group-hover:w-full"></span>
+                        <span class="scroll-progress absolute -bottom-2 left-0 h-[3px] bg-primary shadow-[0_0_8px_rgba(47,73,159,0.8)]" style="width: 0%;"></span>
                     </a>
                 </nav>
                 
@@ -604,7 +604,7 @@
                 
                 window.addEventListener('scroll', () => {
                     const scrollY = window.scrollY;
-                    const headerOffset = 150; 
+                    const headerOffset = 120; // Ajustado para a nova escala de tamanhos
                     const documentHeight = document.body.offsetHeight;
                     const isAtBottom = Math.ceil(window.innerHeight + scrollY) >= documentHeight - 50;
 
